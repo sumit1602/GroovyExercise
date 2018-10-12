@@ -33,7 +33,7 @@
  1.upto(10){print it*3  + " "}
  println "\n "
 
- 11.times {print it*3  + " "}
+ 10.times {it -> print ((it+1)*3   + " ")}
  println "\n "
 
  3.step(31,3){print it +" "}
