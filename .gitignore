@@ -1,0 +1,24 @@
+# See http://help.github.com/ignore-files/ for more about ignoring files.
+*.swp
+
+# compiled output
+/target
+
+
+# misc
+/.sass-cache
+/connect.lock
+/libpeerconnection.log
+.idea
+*.iml
+
+#eclipse
+.settings
+.project
+.classpath
+.checkstyle
+.DS_Store
+
+# generated index
+/src/main/webapp/WEB-INF/views/index.jsp
+/src/main/webapp/WEB-INF/views/index.html
