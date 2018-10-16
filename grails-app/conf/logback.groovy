@@ -14,10 +14,15 @@ appender('STDOUT', ConsoleAppender) {
         charset = Charset.forName('UTF-8')
 
         pattern =
-                '%clr(%d{yyyy-MM-dd HH:mm:ss.SSS}){faint} ' + // Date
+//                '%clr(%d{yyyy-MM-dd HH:mm:ss.SSS}){faint} ' + // Date
+                '%clr(%d{yyyy-MM-dd }){faint} ' + // Date
+//                        '%d{ISO8601}' +
                         '%clr(%5p) ' + // Log level
-                        '%clr(---){faint} %clr([%15.15t]){faint} ' + // Thread
-                        '%clr(%-40.40logger{39}){cyan} %clr(:){faint} ' + // Logger
+//                        '%clr(%6p) ' + // Log level
+//                        '%clr(---){faint} %clr([%15.15t]){faint} ' + // Thread
+//                        '%clr(%-40.40logger{39}){cyan} %clr(:){faint} ' + // Logger
+                        '%clr(---){faint} %clr([%15.15t]){yellow} ' + // Thread
+                        '%clr(%-40.40logger{39}){yellow} %clr(:){blue}' + // Logger
                         '%m%n%wex' // Message
     }
 }
