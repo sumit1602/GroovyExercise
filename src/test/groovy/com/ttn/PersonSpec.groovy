@@ -1,18 +1,24 @@
 package com.ttn
 
+import grails.test.hibernate.HibernateSpec
 import grails.testing.gorm.DomainUnitTest
 import spock.lang.Specification
+import spock.lang.Unroll
 
-class PersonSpec extends Specification implements DomainUnitTest<Person> {
+class PersonSpec extends Specification implements DomainUnitTest<Person>
+       {
 
-    def setup() {
-    }
+    @Unroll
+    def "validate user contraints for unique email "() {
+        when:
 
-    def cleanup() {
-    }
+        Person user = new Person(name:"neetu")
+        Person user1 = new Person(name:"neetu")
+        then:
+        user.save() instanceOf Person
+        user1.save()==null
+        user1.hasErrors()
+        user1.errors.allErrors.each { println(it) }
 
-    void "test something"() {
-        expect:"fix me"
-            true == false
     }
 }
