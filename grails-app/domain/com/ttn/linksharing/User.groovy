@@ -1,5 +1,7 @@
 package com.ttn.linksharing
 
+import org.grails.datastore.gorm.finders.FindAllByBooleanFinder
+
 class User {
     String email;
     String password;
@@ -27,13 +29,16 @@ class User {
         active nullable: true
     }
 
+    static String transients = ['userName']
 
-//    @Override
-//    public String toString() {
-//        return "User{" +
-//                "fNaME='" + firstName + '\'' +
-//                "LnAME='" + lastName + '\'' +
-//                "email='" + email + '\'' +
-//                '}';
-//    }
+    String getUserFullName(){
+        return firstName.join(lastName).findAll{it}
+    }
+
+    @Override
+    public String toString() {
+        return "User{" +
+                "userFullName='" + getUserFullName() + '\'' +
+                '}';
+    }
 }

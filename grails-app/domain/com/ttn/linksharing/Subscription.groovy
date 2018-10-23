@@ -4,10 +4,8 @@ import com.ttn.linksharing.enums.Seriousness
 
 
 class Subscription {
-//    enum Seriousness{
-//        SERIOUS,VERY_SERIOUS,CASUAL
-//    }
-Seriousness seriousness
+
+    Seriousness seriousness
     Topic topic
     User user
     Date dateCreated

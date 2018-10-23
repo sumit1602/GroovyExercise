@@ -1,5 +1,6 @@
 package com.ttn.linksharing
 
+import com.ttn.linksharing.enums.Seriousness
 import com.ttn.linksharing.enums.Visibility
 
 
@@ -11,9 +12,32 @@ class Topic {
     Date lastUpdated
     static hasMany = [subscriptions: Subscription, resources: Resource]
 
+    def afterInsert() {
+        withNewSession { session ->
+            Subscription subscription = new Subscription(seriousness: Seriousness.VERY_SERIOUS, user: createdBy, topic: this)
+            if(subscription.save(flush: true, failOnError: true)) {
+                log.info "Topic ${subscription} is subscribed to the topic creater"
+            }
+            else{
+                log.info "${subscription.errors.allErrors}"
+            }
+        }
+    }
     static constraints = {
-        name(nullable: false, blank: false, unique: true)
+        name(nullable: false, blank: false, unique: 'createdBy')
         createdBy nullable: false
         visibility nullable: false
+    }
+//    static mapping = {
+//        sort name: "desc"
+//    }
+
+
+
+    @Override
+    public String toString() {
+        return "Topic{" +
+                "TopicName='" + name + '\'' +
+                '}';
     }
 }

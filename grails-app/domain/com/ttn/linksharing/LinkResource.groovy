@@ -2,7 +2,7 @@ package com.ttn.linksharing
 
 class LinkResource extends Resource{
 
-String filePath
+    String filePath
     Date dateCreated
     Date lastUpdated
     static constraints = {

@@ -1,15 +1,15 @@
 package com.ttn.linksharing
 
 class ResourceRating {
+    User user
     Resource resource
-    String createdBy
     int score
     Date dateCreated
     Date lastUpdated
 
     static constraints = {
+        resource unique: 'user'
         resource nullable: false
-        createdBy nullable: false
-        score nullable: false, size: 1..5
+        score nullable: false, range: 1..5
     }
 }

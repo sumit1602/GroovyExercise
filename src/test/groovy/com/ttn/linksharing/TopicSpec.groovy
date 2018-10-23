@@ -1,5 +1,6 @@
 package com.ttn.linksharing.enums.Visibility
 
+import com.ttn.linksharing.Constant
 import com.ttn.linksharing.Topic
 import com.ttn.linksharing.User
 import com.ttn.linksharing.enums.Visibility
@@ -22,6 +23,20 @@ class TopicSpec extends Specification implements DomainUnitTest<Topic> {
         VISIBILITY         | TOPICNAME | status
         Visibility.PRIVATE | "grails"  | true
         Visibility.PUBLIC  | "spring"  | true
+
+    }
+
+    @Unroll
+    def "to check ToString of topic"() {
+        given:
+        User user = new User(email: "sumit.chaudhary@tothenew.com", password: Constant.password, firstName: "sumit", lastName: "chaudhary", photo: null,
+                active: true, admin: false)
+
+        when:
+        Topic topic = new Topic(name: "Topic1", createdBy: user)
+
+        then:
+        topic.toString().equals("Name of Topic: Topic1 and userFullName: sumitchaudhary")
 
     }
 }
