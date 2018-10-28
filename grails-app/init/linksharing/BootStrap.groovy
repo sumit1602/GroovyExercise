@@ -27,7 +27,7 @@ class BootStrap {
         List<User> users = []
         if (User.count() == 0) {
             User admin = User.findOrSaveWhere(firstName: "sumit", lastName: "chaudhary", email: "sumit.chaudhary@tothenew.com",
-                    password: Constant.password, admin: true)
+                    password: Constant.password, admin: true, active: true)
             if (admin.save(failOnError: true, flush: true)) {
                 users.add(admin)
                 log.info "Admin ${admin} saved successfully"

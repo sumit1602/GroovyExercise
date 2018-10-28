@@ -1,9 +1,9 @@
 //package com.ttn.linksharing
 //
-//import grails.testing.web.controllers.ControllerUnitTest
+//import grails.testing.web.taglib.TagLibUnitTest
 //import spock.lang.Specification
 //
-//class DemoControllerSpec extends Specification implements ControllerUnitTest<DemoController> {
+//class UserTaglibTagLibSpec extends Specification implements TagLibUnitTest<UserTaglibTagLib> {
 //
 //    def setup() {
 //    }
