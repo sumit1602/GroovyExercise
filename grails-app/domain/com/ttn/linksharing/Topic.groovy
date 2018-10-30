@@ -12,6 +12,11 @@ class Topic {
     Date lastUpdated
     static hasMany = [subscriptions: Subscription, resources: Resource]
 
+    static mapping = {
+//        sort name:'asc'
+        [sort: 'name', order: 'asc']
+    }
+
     def afterInsert() {
         withNewSession { session ->
             Subscription subscription = new Subscription(seriousness: Seriousness.VERY_SERIOUS, user: createdBy, topic: this)
@@ -28,9 +33,6 @@ class Topic {
         createdBy nullable: false
         visibility nullable: false
     }
-//    static mapping = {
-//        sort name: "desc"
-//    }
 
 
 

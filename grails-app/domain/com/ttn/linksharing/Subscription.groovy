@@ -4,6 +4,9 @@ import com.ttn.linksharing.enums.Seriousness
 
 
 class Subscription {
+    static String convertSeriousness(String seriousness){
+        seriousness.valueOf(seriousness)
+    }
 
     Seriousness seriousness
     Topic topic
@@ -16,5 +19,9 @@ class Subscription {
         topic nullable: false
         user unique: ['topic']
         seriousness nullable: false
+    }
+    static mapping = {
+        topic lazy: false
+        user lazy: false
     }
 }

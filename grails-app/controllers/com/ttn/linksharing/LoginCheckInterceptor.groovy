@@ -8,11 +8,13 @@ class LoginCheckInterceptor {
         matchAll().excludes(controller: "login")
     }
 
-    boolean before() {
-        if (!session.user) {
-            redirect(controller: 'login', action: 'index')
-        }
-    }
+//    boolean before() {
+//        if (!session.user) {
+//            redirect(controller: 'login', action: 'index')
+//            true
+//        }
+//        false
+//    }
 
     boolean after() { true }
 

@@ -9,7 +9,7 @@ class User {
     byte[] photo
     Boolean active
     Boolean admin
-//    String confirmPassword
+    String confirmPassword
     Date dateCreated
     Date lastUpdated
 
@@ -17,7 +17,8 @@ class User {
     static hasMany = [topics: Topic, subscriptions: Subscription, readingIteams: ReadingItem, resources: Resource]
 
     static mapping = {
-        photo (sqlType: "longblob")
+        photo(sqlType: "longblob")
+        [sort: 'id', order: 'desc']
     }
 
     static constraints = {
@@ -28,21 +29,25 @@ class User {
         photo nullable: true
         admin nullable: true
         active nullable: true
-//        confirmPassword(size: 5..15, blank: false, nullable: false, validator: { val, obj ->
-//            if (val == obj.password) {
-//                return true
-//            } else {
-//                return "Password is not matching"
-//            }
-//        })
-    }
 
-//    static transients = ['fullName','confirmPassword']
+        confirmPassword(size: 5..15, blank: false, nullable: false, bindable: true, validator: { val, obj ->
+            if (obj.hasProperty('id')) {
+                if (val == obj.password) {
+                    return true
+                } else {
+                    return false
+                }
+            }
+        })
+    }
+    static transients = ['confirmPassword','fullName']
+
 
     String getfullName(){
-        User user = new User()
-        [user.firstname, user.lastname].findAll{it}.join(' ')
+        ['firstName','lastName'].findAll{it}.join(' ')
     }
+}
+
 
 //    @Override
 //    public String toString() {
@@ -50,4 +55,4 @@ class User {
 //                "userName='" + ${email} + '\'' +
 //                '}';
 //    }
-}
+

@@ -17,7 +17,7 @@ class LoginController {
         User user = User.findByEmailAndPassword(username, password)
         if (user) {
             if (user.active) {
-                session.user = user
+                session['user'] = user
 //                render "User is active"
                 redirect(action: 'index')
             } else {
@@ -30,8 +30,10 @@ class LoginController {
     }
 
     def logout() {
-        session.invalidate
+        session.invalidate()
         redirect(controller: 'Login', action: 'index')
+
+//        redirect(action: "login")
     }
 
     def register() {
@@ -41,6 +43,5 @@ class LoginController {
         } else {
             render "${user.errors.allErrors.properties}"
         }
-
     }
 }

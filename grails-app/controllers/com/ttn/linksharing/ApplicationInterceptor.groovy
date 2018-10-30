@@ -11,8 +11,8 @@ class ApplicationInterceptor {
 
     boolean after() {
         log.info "------------------------------------AFTER------------------------------------------------"
-
-        true }
+        true
+    }
 
     void afterView() {
 
