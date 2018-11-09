@@ -11,6 +11,7 @@ class ApplicationInterceptor {
 
     boolean after() {
         log.info "------------------------------------AFTER------------------------------------------------"
+        log.info(" ${params}")
         true
     }
 

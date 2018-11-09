@@ -1,5 +1,8 @@
 package com.ttn.linksharing
 
+import com.ttn.linksharing.co.SearchCO
+import sun.rmi.log.LogInputStream
+
 
 class User {
     String email
@@ -10,6 +13,8 @@ class User {
     Boolean active
     Boolean admin
     String confirmPassword
+    String fullName
+//    String userName
     Date dateCreated
     Date lastUpdated
 
@@ -18,7 +23,7 @@ class User {
 
     static mapping = {
         photo(sqlType: "longblob")
-        [sort: 'id', order: 'desc']
+        sort id: 'desc'
     }
 
     static constraints = {
@@ -40,19 +45,31 @@ class User {
             }
         })
     }
-    static transients = ['confirmPassword','fullName']
 
-
-    String getfullName(){
-        ['firstName','lastName'].findAll{it}.join(' ')
+    List<Resource> getUnReadResources(SearchCO searchCO){
+        List<ReadingItem> unreaditems = ReadingItem.createCriteria().list(offset: 0, max:10) {
+            eq('isRead', false)
+            eq('user',this)
+        }
+        return unreaditems
     }
+
+    static transients = ['confirmPassword', 'fullName']
+
+
+    String getfullName() {
+        [$ { firstName }, $ { lastName }].findAll { it }.join(' ')
+    }
+
+
+    @Override
+    public String toString() {
+        return "User{" +
+                "FullName='" + $ { fullName } + '\'' +
+                '}';
+    }
+
 }
 
 
-//    @Override
-//    public String toString() {
-//        return "User{" +
-//                "userName='" + ${email} + '\'' +
-//                '}';
-//    }
 

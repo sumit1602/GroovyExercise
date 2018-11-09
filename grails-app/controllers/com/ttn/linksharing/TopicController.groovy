@@ -1,20 +1,19 @@
 package com.ttn.linksharing
 
+import com.ttn.linksharing.co.ResourceSearchCO
 import com.ttn.linksharing.enums.Visibility
 
 class TopicController {
 
     def index() {}
 
-    def show(Integer id) {
-//        List<Topic> topic = Topic.findAllById(id)
-//        Topic topic = Topic.get(id)
+    def show(Long id,ResourceSearchCO resourceSearchCO) {
         Topic topic = Topic.read(id)
         if (topic) {
-            if (topic.visibility==Visibility.PUBLIC) {
+            if (topic.visibility == Visibility.PUBLIC) {
                 render "Success (Visibility PUBLIC)"
             }
-            if (topic.visibility==Visibility.PRIVATE) {
+            if (topic.visibility == Visibility.PRIVATE) {
                 User user = session.user
                 Integer subscriptionCount = user ? Subscription.countByUser(user) : 0
                 if (subscriptionCount) {
@@ -24,8 +23,7 @@ class TopicController {
                     render flash.error = "Subscription doesn't exist"
                 }
             }
-        }
-        else{
+        } else {
             redirect(controller: 'login', action: 'index')
             render flash.error = "Topic is not found"
         }
@@ -43,12 +41,12 @@ class TopicController {
     }
 
 
-    def save(){
+    def save() {
         User user = session.user
         log.info("Current Logged In User : ${user?.firstName}")
-        if(session.user){
-            Topic topic=new Topic(name: params.name, visibility: params.visibility, createdBy: user)
-            if(topic.save(flush: true,failOnError:true)){
+        if (session.user) {
+            Topic topic = new Topic(name: params.name, visibility: params.visibility, createdBy: user)
+            if (topic.save(flush: true, failOnError: true)) {
                 render "Topic Saved Successfully"
             }
         }

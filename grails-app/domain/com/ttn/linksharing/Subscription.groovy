@@ -2,11 +2,7 @@ package com.ttn.linksharing
 
 import com.ttn.linksharing.enums.Seriousness
 
-
 class Subscription {
-    static String convertSeriousness(String seriousness){
-        seriousness.valueOf(seriousness)
-    }
 
     Seriousness seriousness
     Topic topic
@@ -14,11 +10,17 @@ class Subscription {
     Date dateCreated
     Date lastUpdated
 
+    static Seriousness convertSeriousness(String seriousness) {
+        Seriousness.valueOf(seriousness)
+    }
+
+    static belongsTo = [user: User, topic: Topic]
+
     static constraints = {
         user nullable: false
         topic nullable: false
         user unique: ['topic']
-        seriousness nullable: false
+        seriousness nullable: false, default: Seriousness.SERIOUS
     }
     static mapping = {
         topic lazy: false

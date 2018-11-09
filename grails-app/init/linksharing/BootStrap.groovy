@@ -37,7 +37,7 @@ class BootStrap {
 
             (1..2).each {
                 User user = new User(firstName: "sumit${it}", lastName: "chaudhary", email: "sumit${it}.chaudhary@tothenew.com",
-                        password: Constant.password, confirmPassword: Constant.password,  admin: false)
+                        password: Constant.password, confirmPassword: Constant.password, admin: false)
                 if (user.save(failOnError: true, flush: true)) {
                     users.add(user)
                     log.info "User ${user} saved successfully"
@@ -70,8 +70,8 @@ class BootStrap {
 
     List<Resource> createResource(List<Topic> topics) {
         List<Resource> resourceList = []
-        if(resourceList.isEmpty()) {
-            println ("--RESOURCELIST IS NULL,WE CAN PUT LINK AND DOCUMENT RESOURCE THERE--")
+        if (resourceList.isEmpty()) {
+            println("--RESOURCELIST IS NULL,WE CAN PUT LINK AND DOCUMENT RESOURCE THERE--")
             topics.each { Topic topic ->
                 2.times {
                     LinkResource linkResource = new LinkResource(filePath: "http://www.tothenew.com/", createdBy: topic.createdBy, description: topic.name, topic: topic)

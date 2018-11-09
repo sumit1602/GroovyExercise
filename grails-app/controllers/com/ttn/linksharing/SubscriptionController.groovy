@@ -11,7 +11,7 @@ class SubscriptionController {
         if (user) {
 ////        if (user && topic) {
 //            Subscription subscription = Subscription.findByUserAndTopic(user, topic)
-            Subscription subscription = new Subscription(user: user, topic: topic, seriousness: Subscription.convertSeriousness(seriousness))
+            Subscription subscription = new Subscription(user: user, topic: topic, seriousness:Subscription.convertSeriousness(seriousness))
             if (subscription.save(flush: true)) {
 //                subscription = new Subscription(user: user, topic: topic, seriousness: Subscription.convertSeriousness(seriousness))
                 render "success"
@@ -40,10 +40,11 @@ class SubscriptionController {
 
 
     def update(Long id, String seriousness) {
-        Subscription subscription = Subscription.findById(id)
+        Subscription subscription = Subscription.get(id)
         if (subscription) {
-            if(subscription.id == Subscription.convertSeriousness(seriousness))
-            if (subscription.save()) {
+            subscription.setSeriousness(Subscription.convertSeriousness(seriousness))
+            println ">>>>>>>>>>>>>>>>>${subscription.validate()}"
+            if (subscription.save(flush: true)) {
                 render "Success"
             } else {
                 render "${subscription.errors.allErrors}"
