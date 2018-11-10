@@ -8,7 +8,7 @@ class LinkResourceSpec extends Specification implements DomainUnitTest<LinkResou
 @Unroll
     def "validating linkResource url"() {
         when:
-        LinkResource linkResource = new LinkResource(filePath: FILEPATH)
+        LinkResource linkResource = new LinkResource(url: FILEPATH)
 
         then:
         linkResource.validate()== status

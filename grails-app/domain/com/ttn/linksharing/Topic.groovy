@@ -51,11 +51,16 @@ class Topic {
     }
 
 
+    List<User> getSubscribedUsers(){
+        List<User> subscribedUsers = this.subscriptions.user.toList()
+        subscribedUsers
+    }
     static constraints = {
         name(nullable: false, blank: false, unique: 'createdBy')
         createdBy nullable: false
         visibility nullable: false
     }
+
 
 
     @Override

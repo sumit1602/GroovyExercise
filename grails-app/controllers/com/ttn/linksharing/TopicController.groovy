@@ -41,14 +41,28 @@ class TopicController {
     }
 
 
-    def save() {
-        User user = session.user
-        log.info("Current Logged In User : ${user?.firstName}")
-        if (session.user) {
-            Topic topic = new Topic(name: params.name, visibility: params.visibility, createdBy: user)
-            if (topic.save(flush: true, failOnError: true)) {
-                render "Topic Saved Successfully"
-            }
+//    def save() {
+//        User user = session.user
+//        log.info("Current Logged In User : ${user?.firstName}")
+//        if (session.user) {
+//            Topic topic = new Topic(name: params.name, visibility: params.visibility, createdBy: user)
+//            if (topic.save(flush: true, failOnError: true)) {
+//                render "Topic Saved Successfully"
+//            }
+//        }
+//    }
+    def save(){
+        Topic newTopicAdd = new Topic(createdBy: session.user, name: params.name, visibility: params.visibility)
+        if(newTopicAdd.save(flush: true)){
+            log.info("Topic saved successfully == ${newTopicAdd}")
+            flash.message = "TOPIC SAVED SUCCESSFULLY"
+            session.user.addTo(newTopicAdd)
+            flash.message = "SUCCESSFULLY SAVED "
+        }else{
+            log.error("ERROR WHILE SAVING ${newTopicAdd} TOPIC")
+            newTopicAdd.errors.allErrors.each {println it}
+            flash.error = "TOPIC NOT SAVED"
         }
+        redirect(controller: 'user', action: 'index')
     }
 }

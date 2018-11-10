@@ -1,7 +1,6 @@
 package com.ttn.linksharing
 
 import com.ttn.linksharing.co.SearchCO
-import sun.rmi.log.LogInputStream
 
 
 class User {
@@ -54,7 +53,17 @@ class User {
         return unreaditems
     }
 
-    static transients = ['confirmPassword', 'fullName']
+    List<Topic> getSubscribedTopic(){
+        List<Topic> subscribedTopic =[]
+        if(this.subscriptions){
+            this.subscriptions.each {
+                subscribedTopic.add(it.topic)
+            }
+        }
+        subscribedTopic
+    }
+
+    static transients = ['confirmPassword', 'fullName','getSubscribedTopic()']
 
 
     String getfullName() {

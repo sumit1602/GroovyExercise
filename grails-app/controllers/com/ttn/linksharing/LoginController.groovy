@@ -5,9 +5,11 @@ class LoginController {
     def index() {
         if (session['user']) {
 //            render "SESSION.USER EXISTS"
+            log.info "REDIRECTING TO USER INDEX"
             forward(controller: 'User', action: 'index')
         } else {
-            render "SESSION.USER DOESN'T EXIST"
+//            render "SESSION.USER DOESN'T EXIST"
+//            render view: main.gsp
         }
 //        render session['user']
     }

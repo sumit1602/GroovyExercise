@@ -5,7 +5,6 @@ class UserController {
     def index() {
         if(session.user){
             render "user dashboard"
-
         }
     }
 }
