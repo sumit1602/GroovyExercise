@@ -20,28 +20,28 @@ class LoginController {
         if (user) {
             if (user.active) {
                 session['user'] = user
-//                render "User is active"
-                redirect(action: 'index')
+                redirect(controller: 'user', action: 'index')
             } else {
                 render flash.error = 'Your account is not active'
             }
         } else {
             render flash.error = 'User not found'
+            redirect(controller: 'Login', action: 'index')
         }
-//        render flash.error
     }
+
 
     def logout() {
         session.invalidate()
         redirect(controller: 'Login', action: 'index')
-
-//        redirect(action: "login")
     }
 
     def register() {
         User user = new User(params)
         if (user.save()) {
-            render "You are successfully registor"
+            session.user
+            render "You are successfully register"
+            forward(controller: 'User', action: 'index')
         } else {
             render "${user.errors.allErrors.properties}"
         }

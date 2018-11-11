@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <title>Bootstrap Example</title>
+    <title>LinkSharing-Project</title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
@@ -19,11 +19,9 @@
     }
     .input-group{
         float: right;
-
     }
 
     </style>
-
     <g:layoutHead/>
 </head>
 <body>
@@ -33,7 +31,7 @@
     <div class="header1">
         <span>
 
-            <div><button type="button" class="btn btn-link">Link sharing</button>
+            <div><button type="button" class="btn btn-link" href="${createLink(controller: 'login', action: 'index')}">Link sharing</button>
                 <div class="input-group" class="col align-self-end">
                     <input type="text" class="form-control" placeholder="Search" name="search">
                     <div class="input-group-btn">
@@ -43,133 +41,64 @@
             </div>
         </span>
     </div>
+
+
+    <ul class="nav navbar-nav col-lg-12">
+
+        <g:if test="${session.user}">
+            <li class="col-lg-1 " style="padding: 2px"><a href="#myModal" data-toggle="modal"
+                                                          data-target="#myModal"><i class="fa fa-comments"
+                                                                                    style="font-size:20px"></i>
+            </a>
+            </li>
+
+            <g:render template="/topic/createTopic"></g:render>
+
+
+            <li class="col-lg-1" style="padding: 2px"><a href="#myModal2" data-toggle="modal"
+                                                         data-target="#myModal2"><i class="fa fa-envelope"
+                                                                                    style="font-size:20px"></i>
+            </a>
+            </li>
+            <g:render template="/topic/email"></g:render>
+
+            <li class="col-lg-1" style="padding: 0px"><a href="#myModal3" data-toggle="modal"
+                                                         data-target="#myModal3"><i class="fa fa-link"
+                                                                                    style="font-size:20px"></i>
+            </a>
+            </li>
+            <g:render template="/resource/createLinkResource"></g:render>
+
+
+            <li class="col-lg-1" style="padding: 2px"><a href="#myModal4" data-toggle="modal"
+                                                         data-target="#myModal4"><i class="fa fa-file-text"
+                                                                                    style="font-size:20px"></i>
+            </a>
+            </li>
+            <g:render template="/resource/createDocumentResource"></g:render>
+
+
+            <li class="dropdown  col-lg-3" style="padding: 2px">
+                <a class="dropdown-toggle" data-toggle="dropdown" href="#"><i class="fa fa-user"
+                                                                              style="font-size:20px"></i>
+                    ${session.user.getfullName()}
+                    <span class="caret"></span></a>
+                <ul class="dropdown-menu">
+                    <li><g:link controller="user" action="editProfile">Profile</g:link></li>
+                    <g:if test="${session.user.admin}">
+                        <li><g:link controller="user" action="showUserListToAdmin">Users</g:link></li>
+                        <li><g:link controller="user" action="showTopics">Topic</g:link></li>
+                        <li><g:link controller="resource" action="showPosts">Post</g:link></li>
+                    </g:if>
+                    <li><g:link controller="login" action="logout">Logout</g:link></li>
+                </ul>
+            </li>
+        </g:if>
+    </ul>
 </form>
 
-<div class="col-sm-6">
-    <div class="col-sm-12" "><div class="panel panel-primary">
-    <div class="panel-heading">Recent Shares</div>
-    <div class="panel-body" style="height: 130px; width: 100%;">
-        <div class="media">
-            <div class="media-left">
-                <img src="avatar.jpg" class="media-object" style="width:90px; border: 1px solid black;">
-            </div>
-            <div class="media-body">
-                <h4 class="media-heading">Sumit Chaudhary</h4>
-                <p>I'm self motivating and hard-working guy,I always want to learn new things.  </p>
-                <div> <a href="#" style="  color: red; "> <i class="fab fa-google-plus-g"></i></a>  <a href="#" style="  color: blue; "><i class="fab fa-facebook-square"></i></a>   <a href="#" style="  color: blue; "><i class="fab fa-twitter"></i></a>
-                    <p style="text-align: right;margin-top: -20px"><a >View post</a></p> </div>
-            </div>
-        </div>
-        <br>
-    </div>
-    <div class="panel-body" style="height: 130px; width: 100%;">
-        <div class="media">
-            <div class="media-left">
-                <img src="avatar.jpg" class="media-object" style="width:90px; border: 1px solid black;">
-            </div>
-            <div class="media-body">
-                <h4 class="media-heading">Sumit chaudhary</h4>
-                <p>I'm self motivating and hard-working guy,I always want to learn new things.  </p>
-                <div> <a href="#" style="  color: red; "> <i class="fab fa-google-plus-g"></i></a>  <a href="#" style="  color: blue; "><i class="fab fa-facebook-square"></i></a>   <a href="#" style="  color: blue; "><i class="fab fa-twitter"></i></a>
-                    <p style="text-align: right;margin-top: -20px"><a>View post</a></p> </div>
-            </div>
-        </div>
-        <br>
-    </div>
-</div>
-</div>
-
-
-<div class="col-sm-12"><div class="panel panel-primary">
-    <div class="panel-heading">Top Posts<p> <div class="dropdown" style="text-align: right;margin-top: -20px;"><button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">Dropdown Example
-        <span class="caret"></span></button>
-        <ul class="dropdown-menu">
-            <li><a href="#">HTML</a></li>
-            <li><a href="#">CSS</a></li>
-            <li><a href="#">JavaScript</a></li>
-        </ul></p></div></div>
-    <div class="panel-body" style="height: 150px; width: 100%;">
-        <div class="media">
-            <div class="media-left">
-                <img src="avatar.jpg" class="media-object" style="width:90px; border: 1px solid black;">
-            </div>
-            <div class="media-body">
-                <h4 class="media-heading">Sumit chaudhary</h4>
-                <p>I'm self motivating and hard-working guy,I always want to learn new things.  </p>
-                <div><a href="#" style="  color: red; "> <i class="fab fa-google-plus-g"></i></a>   <a href="#" style="  color: blue; "><i class="fab fa-facebook-square"></i></a>    <a href="#" style="  color: blue; "><i class="fab fa-twitter"></i></a>
-                    <p style="text-align: right;margin-top: -20px"><a>View post</a></p> </div>
-            </div>
-        </div>
-        <br>
-
-
-    </div>
-</div>
-</div>
-
-</div>
-
-<!---  RIGHT PART-->
-
-<div class="col-sm-6">
-    <div class="col-sm-12" "><div class="panel panel-primary">
-    <div class="panel-heading">Email</div>
-    <div class="panel-body" style="height: 210px; width: auto;">
-        <form>
-            <div class="form-group">
-                <label for="exampleInputEmail1">Email address*</label>
-                <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter email">
-            </div>
-            <div class="form-group">
-                <label for="exampleInputPassword1">Password*</label>
-                <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Password">
-            </div>
-            <div><p><a href="Forgot Password">Forgot Password</a></p>
-                <button type="submit" class="btn btn-primary" style="float: right; margin-top: -30px;">Submit</button></div>
-        </form>
-
-    </div>
-</div>
-</div>
-
-
-<div class="col-sm-12">
-    <div class="panel panel-primary">
-        <div class="panel-heading">Register</div>
-        <div class="panel-body" style="height: 500px; width: auto;">
-            <div class="form-group col-sm-12">
-                <label for="exampleInputName">First Name*</label>
-                <input type="name" class="form-control" id="exampleInputName" placeholder="Enter First Name">
-            </div>
-            <div class="form-group col-sm-12">
-                <label for="exampleInputName">Last Name*</label>
-                <input type="name" class="form-control" id="exampleInputName" placeholder="Enter last Name">
-            </div>
-            <div class="form-group col-sm-12">
-                <label for="exampleInputEmail1">Email*</label>
-                <input type="email" class="form-control" id="exampleInputEmail1" placeholder="Enter Email">
-            </div>
-            <div class="form-group col-sm-12">
-                <label for="exampleInputEmail1">Password*</label>
-                <input type="Password" class="form-control" id="exampleInputPassword1" placeholder="Enter Password">
-            </div>
-            <div class="form-group col-sm-12">
-                <label for="exampleInputEmail1">Confirm Password*</label>
-                <input type="Password" class="form-control" id="exampleInputPassword2" placeholder="Enter Confirm Password">
-            </div>
-            <div class="form-group col-sm-12">
-                Photo:<br>
-                <input type="file" name="fileupload" value="fileupload" id="fileupload"><br><br>
-            </div>
-            <div>
-                <button type="submit" class="btn btn-primary" style="float: right; margin-top: -30px;">Submit</button>
-            </div>
-        </div>
-    </div>
-</div>
-
-<g:if test="{session.user == null}">
-    <g:if test="${flash.erroor}">
+<g:if test="${session.user == null}">
+    <g:if test="${flash.error}">
         <g:message message="${flash.error}"></g:message>
     </g:if>
     <g:if test="${flash.message}">

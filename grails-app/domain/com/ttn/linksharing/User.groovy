@@ -2,7 +2,6 @@ package com.ttn.linksharing
 
 import com.ttn.linksharing.co.SearchCO
 
-
 class User {
     String email
     String password
@@ -45,17 +44,17 @@ class User {
         })
     }
 
-    List<Resource> getUnReadResources(SearchCO searchCO){
-        List<ReadingItem> unreaditems = ReadingItem.createCriteria().list(offset: 0, max:10) {
+    List<Resource> getUnReadResources(SearchCO searchCO) {
+        List<ReadingItem> unreaditems = ReadingItem.createCriteria().list(offset: 0, max: 10) {
             eq('isRead', false)
-            eq('user',this)
+            eq('user', this)
         }
         return unreaditems
     }
 
-    List<Topic> getSubscribedTopic(){
-        List<Topic> subscribedTopic =[]
-        if(this.subscriptions){
+    List<Topic> getSubscribedTopic() {
+        List<Topic> subscribedTopic = []
+        if (this.subscriptions) {
             this.subscriptions.each {
                 subscribedTopic.add(it.topic)
             }
@@ -63,13 +62,36 @@ class User {
         subscribedTopic
     }
 
-    static transients = ['confirmPassword', 'fullName','getSubscribedTopic()']
-
-
-    String getfullName() {
-        [$ { firstName }, $ { lastName }].findAll { it }.join(' ')
+    Integer getSubscriptionCount() {
+        if (this.subscriptions)
+            this.subscriptions.size()
+        else
+            0
     }
 
+    Integer getTopicCount() {
+        if (topics)
+            this.topics.size()
+        else
+            0
+    }
+
+    List<String> getUserTopics() {
+        List<String> userTopics = []
+        if (this.topics) {
+            this.topics.each {
+                userTopics.add(it.name)
+            }
+        }
+        userTopics
+    }
+
+    static transients = ['confirmPassword', 'fullName', 'getSubscribedTopic()']
+
+
+    String getFullName() {
+        [$ { firstName }, $ { lastName }].findAll { it }.join(' ')
+    }
 
     @Override
     public String toString() {
@@ -77,8 +99,4 @@ class User {
                 "FullName='" + $ { fullName } + '\'' +
                 '}';
     }
-
 }
-
-
-

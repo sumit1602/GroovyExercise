@@ -1,4 +1,6 @@
-<div class="col-lg-12" style="margin-top: 25px">
+
+
+<div class="col-lg-12" style="margin-top: 20px">
     <div class="panel panel-default">
         <div class="panel-heading " style="background:#007efc">
             <h3 style="color:white">Login</h3>
@@ -7,15 +9,15 @@
         <div class="panel-body">
             <g:form controller="login" action="loginHandler" method="post">
                 <div class="form-group col-lg-10">
-                    <label>UserName</label>
+                    <label>Email/UserName*</label>
                     <input class="form-control" type="text" name="loginusername"
-                           placeholder="Enter Your Username">
+                           placeholder="Enter Your Email/Username">
                 </div>
 
                 <div class="col-lg-2"></div>
 
                 <div class="form-group col-lg-10">
-                    <label>Password</label>
+                    <label>Password*</label>
                     <input class="form-control" type="password" name="loginpassword"
                            placeholder="Enter Your Password">
 

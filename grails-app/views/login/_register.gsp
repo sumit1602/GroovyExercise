@@ -9,7 +9,7 @@
         <div class="panel-body ">
             <g:uploadForm controller="login" action="register" method="post" enctype="multipart/form-data">
                 <div class="form-group col-lg-10">
-                    <label>First Name</label>
+                    <label>First Name*</label>
                     <input class="form-control" type="text" name="firstname"
                            placeholder="Enter Your First name" required>
                 </div>
@@ -17,31 +17,31 @@
                 <div class="col-lg-2"></div>
 
                 <div class="form-group col-lg-10">
-                    <label>Last name</label>
+                    <label>Last name*</label>
                     <input class="form-control" type="text" name="lastname" placeholder="Enter Your Last name" required>
 
                 </div>
 
                 <div class="form-group col-lg-10">
-                    <label>Email</label>
+                    <label>Email*</label>
                     <input class="form-control" type="email" name="email" placeholder="Enter Your Email" required>
 
                 </div>
 
                 <div class="form-group col-lg-10">
-                    <label>Username</label>
+                    <label>Username*</label>
                     <input class="form-control" type="text" name="username" placeholder="Enter Your Username" required>
 
                 </div>
 
                 <div class="form-group col-lg-10">
-                    <label>Password</label>
+                    <label>Password*</label>
                     <input class="form-control" type="password" name="password" placeholder="Enter Your Password" required>
 
                 </div>
 
                 <div class="form-group col-lg-10">
-                    <label>Confirm Password</label>
+                    <label>Confirm Password*</label>
                     <input class="form-control" type="password" name="confirmpassword"
                            placeholder="Confirm Your Password" required>
 
@@ -50,7 +50,6 @@
                 <div class="form-group col-lg-10">
                     <label>Photo</label>
                     <input class="form-control" type="file" name="photo">
-
                 </div>
 
                 <div class="form-group col-lg-10">
