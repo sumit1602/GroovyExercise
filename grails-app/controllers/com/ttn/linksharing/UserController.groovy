@@ -4,9 +4,17 @@ class UserController {
 
     def index() {
         if(session.user){
-            render "user dashboard"
+            log.info("--USER INDEX , SESSION USER , --")
+
         }else{
-            redirect(controller: 'login' , action: 'index')
+//            redirect(controller: 'login' , action: 'index')
         }
+
+    }
+    def userList(){
+
+    }
+    def showTopics(){
+
     }
 }

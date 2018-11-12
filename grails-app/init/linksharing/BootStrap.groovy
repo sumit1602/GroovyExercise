@@ -28,7 +28,7 @@ class BootStrap {
         if (User.count() == 0) {
             User admin = User.findOrSaveWhere(firstName: "sumit", lastName: "chaudhary", email: "sumit.chaudhary@tothenew.com",
                     password: Constant.password, confirmPassword: Constant.password, admin: true, active: true)
-            if (admin.save(failOnError: true, flush: true)) {
+            if (admin.save( flush: true)) {
                 users.add(admin)
                 log.info "Admin ${admin} saved successfully"
             } else {
@@ -37,8 +37,8 @@ class BootStrap {
 
             (1..2).each {
                 User user = new User(firstName: "sumit${it}", lastName: "chaudhary", email: "sumit${it}.chaudhary@tothenew.com",
-                        password: Constant.password, confirmPassword: Constant.password, admin: false)
-                if (user.save(failOnError: true, flush: true)) {
+                        password: Constant.password, confirmPassword: Constant.password, admin: false, active: true)
+                if (user.save( flush: true)) {
                     users.add(user)
                     log.info "User ${user} saved successfully"
                 } else {

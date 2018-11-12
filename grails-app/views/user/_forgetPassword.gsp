@@ -43,9 +43,9 @@
                     <input type="submit" class="form-control btn-primary" style="background:#007efc">
                 </div>
 
-                <g:if test="${flash.error}">
-                    ${flash.error}
-                </g:if>
+                %{--<g:if test="${flash.error}">--}%
+                    %{--${flash.error}--}%
+                %{--</g:if>--}%
 
             </g:form>
 

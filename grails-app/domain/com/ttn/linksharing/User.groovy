@@ -89,10 +89,14 @@ class User {
     static transients = ['confirmPassword', 'fullName', 'getSubscribedTopic()']
 
 
-    String getFullName() {
-        [$ { firstName }, $ { lastName }].findAll { it }.join(' ')
-    }
+//    String getFullName() {
+//        [$ { firstName }, $ { lastName }].findAll { it }.join(' ')
+//    }
 
+    String getFullName(){
+        this.fullName = this.firstName + " " +this.lastName
+        fullName
+    }
     @Override
     public String toString() {
         return "User{" +
