@@ -86,6 +86,7 @@ class User {
         userTopics
     }
 
+
     static transients = ['confirmPassword', 'fullName', 'getSubscribedTopic()']
 
 

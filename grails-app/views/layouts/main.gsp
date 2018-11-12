@@ -31,9 +31,14 @@
     <div class=" col-lg-8">
         <span>
 
-            <div><button type="button" class="btn btn-link"
-                         href="${createLink(controller: 'login', action: 'index')}">Link sharing</button>
-<g:form controller="search" action="index">
+            <div>
+                %{--<button type="button" class="btn btn-link"--}%
+                         %{--href="${createLink(controller: 'login', action: 'index')}">Link Sharing</button>--}%
+%{--<g:form controller="search" action="index">--}%
+    <span>
+        <a class="navbar-brand" href="${createLink(controller: 'login', action: 'index')}">Link Sharing</a>
+    </span>
+                <g:form controller="search" action="index">
                 <div class="input-group" class="col align-self-end">
                     <input type="text" class="form-control " placeholder="Search" name="search">
 
@@ -90,7 +95,7 @@
                 </a>
                 <ul class="dropdown-menu" class="col align-self-end">
                     <li><g:link controller="user" action="editProfile">Profile</g:link></li>
-                    <g:if test="${session.user.admin}">
+                    <g:if test="${session.user}">
                         <li><g:link controller="user" action="showUserList">Users</g:link></li>
                         <li><g:link controller="user" action="showTopics">Topic</g:link></li>
                         <li><g:link controller="resource" action="showPosts">Post</g:link></li>

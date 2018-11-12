@@ -9,6 +9,10 @@ class ReadingItemController {
 
     }
     def changeIsRead(){
-
+        if (readingItemService.changeIsRead(params))
+            flash.message = "MARKED AS READ"
+        else
+            flash.error = "ERROR"
+        redirect(controller: 'user', action: 'index')
     }
 }

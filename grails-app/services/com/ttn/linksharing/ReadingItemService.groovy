@@ -1,18 +1,12 @@
 package com.ttn.linksharing
 
 import grails.gorm.services.Service
+import grails.transaction.Transactional
 
-@Service(ReadingItem)
-interface ReadingItemService {
-
-    ReadingItem get(Serializable id)
-
-    List<ReadingItem> list(Map args)
-
-    Long count()
-
-    void delete(Serializable id)
-
-    ReadingItem save(ReadingItem readingItem)
-
+@Transactional
+class readingItemService{
+    def changeIsRead(Map readingItemData){
+        String str="UPDATE ReadingItem set isRead=true where id=${readingItemData.id}"
+        return ReadingItem.executeUpdate(str)
+    }
 }

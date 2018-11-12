@@ -15,6 +15,12 @@ class UserController {
 
     }
     def showTopics(){
-
+        render view: '/resource/show'
+    }
+    def editProfile(){
+        render view: '/user/profile'
+    }
+    def showUserList(){
+        render view: '/user/userList'
     }
 }

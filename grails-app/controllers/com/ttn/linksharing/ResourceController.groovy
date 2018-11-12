@@ -34,8 +34,8 @@ class ResourceController {
         RatingInfoVO ratingInfoVO = resource.getRatingInfo()
         render "TOTAL_VOTES: ${ratingInfoVO.totalVotes} TOTAL_SCORE: ${ratingInfoVO.totalScore} AVERAGE_SCORE: ${ratingInfoVO.averageScore}"
     }
-    def showPost(){
-
+    def showPosts(){
+        render view: '/resource/showPosts'
     }
 }
 

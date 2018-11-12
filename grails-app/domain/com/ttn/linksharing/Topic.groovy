@@ -55,6 +55,13 @@ class Topic {
         List<User> subscribedUsers = this.subscriptions.user.toList()
         subscribedUsers
     }
+
+    def canViewedBy(){
+
+    }
+    def getScore(){
+
+    }
     static constraints = {
         name(nullable: false, blank: false, unique: 'createdBy')
         createdBy nullable: false

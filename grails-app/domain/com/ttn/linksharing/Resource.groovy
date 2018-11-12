@@ -86,4 +86,14 @@ abstract class Resource {
     def showPost(){
 
     }
+    static List getRecentShares() {
+
+        List<Resource> resourceList = Resource.createCriteria().list {
+            order("dateCreated", "desc")
+            maxResults(2)
+
+        }
+        return resourceList
+    }
+
 }
