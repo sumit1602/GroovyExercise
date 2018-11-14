@@ -17,7 +17,7 @@
                     <div class="row">
 
                         <div class="col-sm-3">
-                            %{--<ls:userImage username="${session.user.fullName}" height="100" width="100"/>--}%
+                            <ls:userImage username="${session.user.fullName}" height="100" width="100"/>
                         </div>
 
                         <div class="col-sm-9">

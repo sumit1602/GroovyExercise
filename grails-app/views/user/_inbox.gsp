@@ -1,5 +1,5 @@
 
-<div class="col-lg-6">
+<div class="col-lg-12">
     <div class="panel panel-primary ">
         <div class="panel-heading">Inbox</div>
         %{--<g:each in="" var="unReadResources">--}%
@@ -7,6 +7,7 @@
                 <div class="col-lg-12">
                     <div class="col-sm-3">
                         %{--<ls:userImage username="${unReadResources.fullName}" height="100" width="100"/>--}%
+                        <ls:userImage username="${session.user.fullName}" height="100" width="100"/>
                     </div>
 
                     <div class="col-lg-9">

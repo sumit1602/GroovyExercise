@@ -57,9 +57,9 @@ def assetResourceLocator
         outputStream.close()
     }
 /*    def register(){
-        User newUser = new User(firstName: params.firstName, lastName: params.lastName, userName: params.userName,
+        User newUser = new User([firstName: params.firstName, lastName: params.lastName, userName: params.userName,
         email: params.email, password: params.password, confirmPassword: params.confirmPassword,
-                active: true, photo: params.photo.bytes)
+                active: true, photo: params.photo.bytes])
         if(newUser.save(flush: true))
         {
             log.info("user created: ${newUser}")
@@ -73,4 +73,21 @@ def assetResourceLocator
             render "Not able to create user"
         }
     }*/
+
+    def changePassword() {
+        User user = session.user
+        if (user) {
+            user.password = params.updatedPassword
+            user.confirmPassword = params.updatedConfirmPassword
+            if (user.save(flush: true)) {
+//                session.user = user
+                log.info("PASSWORD HAS SUCCESSFULLY CHANGED")
+                forward(controller: 'user', action: 'index')
+//                flash.message = "PASSWORD HAS SUCCESSFULLY CHANGED, Your new password is ${params.newPassword}"
+            } else {
+                log.info("User with this Email Doesn't exist")
+                flash.error = "User with this Email Doesn't exist"
+            }
+        }
+    }
 }
