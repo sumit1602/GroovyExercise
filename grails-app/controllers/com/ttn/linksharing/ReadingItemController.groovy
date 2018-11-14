@@ -15,4 +15,7 @@ class ReadingItemController {
             flash.error = "ERROR"
         redirect(controller: 'user', action: 'index')
     }
+    def save(){
+
+    }
 }

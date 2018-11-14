@@ -95,5 +95,8 @@ abstract class Resource {
         }
         return resourceList
     }
+    def deleteFile(){
+
+    }
 
 }

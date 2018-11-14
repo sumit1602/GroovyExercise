@@ -12,7 +12,7 @@ class User {
     Boolean admin
     String confirmPassword
     String fullName
-//    String userName
+    String userName
     Date dateCreated
     Date lastUpdated
 
@@ -25,14 +25,13 @@ class User {
     }
 
     static constraints = {
-        email unique: true, blank: false, nullable: false
+        email unique: true, blank: false, nullable: false, email: true
         password(size: 5..15, blank: false, nullable: false)
         firstName unique: true, blank: false, nullable: false
         lastName(blank: false, nullable: false)
         photo nullable: true
         admin nullable: true
         active nullable: true
-
         confirmPassword(size: 5..15, blank: false, nullable: false, bindable: true, validator: { val, obj ->
             if (obj.hasProperty('id')) {
                 if (val == obj.password) {
@@ -87,7 +86,7 @@ class User {
     }
 
 
-    static transients = ['confirmPassword', 'fullName', 'getSubscribedTopic()']
+    static transients = ['userName','fullName', 'getSubscribedTopic()']
 
 
 //    String getFullName() {
@@ -98,10 +97,16 @@ class User {
         this.fullName = this.firstName + " " +this.lastName
         fullName
     }
+    String getUserName(){
+        this.userName = this.firstName+this.lastName
+        userName
+    }
+
     @Override
     public String toString() {
         return "User{" +
-                "FullName='" + $ { fullName } + '\'' +
+                "fullName='" + fullName + '\'' +
+                ", userName='" + userName + '\'' +
                 '}';
     }
 }

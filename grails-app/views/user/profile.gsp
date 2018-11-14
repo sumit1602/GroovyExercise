@@ -11,18 +11,15 @@
 
 <div class=" container">
 
-    <div class="col-lg-4">
+    <div class="col-lg-7">
     </div>
 
-    <div class="col-lg-7">
+    <div class="col-lg-5">
 
         <g:render template="editProfile"></g:render>
-
+        <g:render template="changedPassword"></g:render>
 
     </div>
-    <div class="col-lg-4">
-    </div>
-
 </div>
 
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>

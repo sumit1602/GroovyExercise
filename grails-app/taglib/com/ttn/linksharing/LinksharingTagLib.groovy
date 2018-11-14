@@ -4,8 +4,9 @@ class LinksharingTagLib {
     static defaultEncodeAs = [taglib:'html']
     static namespace = "ls"
     //static encodeAsForTags = [tagName: [taglib:'html'], otherTagName: [taglib:'none']]
-    def image={
-
+    def userImage = { attr, body ->
+    out << "<img src='${createLink(controller: 'user', action: 'image', params: [id: attr.id])}' " +
+            " height='${attr.height}' width='${attr.width}'>"
     }
     def markasRead = { attrs, body ->
         if (session.user && attrs.resource) {

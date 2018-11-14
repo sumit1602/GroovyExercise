@@ -76,7 +76,7 @@
                        placeholder="Password">
             </div>
 
-            <div><a href=${createLink(controller: 'login',action: 'forgotPassword')}>Forgot Password</a>
+            <div><a href=${createLink(controller: 'login',action: 'forgetPasswordView')}>Forgot Password</a>
                 <button type="submit" class="btn btn-primary" style="float: right; margin-top: 0px;">Submit</button>
             </div>
         </g:form>

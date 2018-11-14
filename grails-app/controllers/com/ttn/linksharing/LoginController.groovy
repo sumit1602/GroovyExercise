@@ -36,13 +36,40 @@ class LoginController {
     }
 
     def register() {
-        User user = new User(params)
-        if (user.save()) {
-            session.user
-            render "You are successfully register"
+        User newUser = new User([firstName: params.firstName, lastName: params.lastName, userName: params.userName,
+                                 email    : params.email, password: params.password, confirmPassword: params.confirmPassword,
+                                 active   : true, photo: params.photo.bytes, admin: false])
+        if (newUser.save(flush: true)) {
+            session.user = newUser
+            log.info("user created: ${newUser}")
             forward(controller: 'User', action: 'index')
+            render "User created successfully"
         } else {
-            render "${user.errors.allErrors.properties}"
+            log.info("Error in Creating User: ")
+            render "Not able to create user"
+        }
+    }
+
+    def forgetPasswordView() {
+        render view: '/login/forgetPasswordView'
+    }
+
+    def forgetPassword() {
+        User user = User.findByEmail(params.email)
+        if (user) {
+            user.password = params.newPassword
+            user.confirmPassword = params.confirmNewPassword
+            if (user.save(flush: true)) {
+                session.user = user
+                log.info("PASSWORD HAS SUCCESSFULLY CHANGED")
+                forward(controller: 'user', action: 'index')
+//            render "PASSWORD HAS SUCCESSFULLY CHANGED, Your new password is ${params.newPassword}"
+                flash.message = "PASSWORD HAS SUCCESSFULLY CHANGED, Your new password is ${params.newPassword}"
+            }
+        } else {
+            log.info("User with this Email Doesn't exist")
+            render view: forgetPassword()
+            flash.error = "User with this Email Doesn't exist"
         }
     }
 }
