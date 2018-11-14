@@ -12,6 +12,11 @@
 <div class=" container">
 
     <div class="col-lg-7">
+
+        <g:render template="profile1"></g:render>
+        <br/><br/>
+        <g:render template="profileTopic"></g:render>
+
     </div>
 
     <div class="col-lg-5">

@@ -2,6 +2,8 @@ package com.ttn.linksharing
 
 class UserController {
 
+def assetResourceLocator
+
     def index() {
         if(session.user){
             log.info("--USER INDEX , SESSION USER , --")
@@ -23,17 +25,38 @@ class UserController {
     def showUserList(){
         render view: '/user/userList'
     }
-    def image(Long id){
-        User user = User.findById(id)
-        if(user.photo){
-            log.info("PHOTO IS UPLOADED")
+//    def image(){
+//        User user = User.findById(params.id)
+//        byte[] photo
+//        if(user?.photo){
+//            log.info("PHOTO IS UPLOADED")
+//            photo = user.photo
+//        }else{
+//            log.info("PHOTO NOT FOUND")
+//            photo = assetResourceLocator?.findAssetForURI('image.png')?.bytes
+//        }
+//        OutputStream outputStream = Response.getOutputStream()
+//        outputStream.write(photo)
+//        outputStream.flush()
+//        outputStream.close()
+//    }
+
+        def image(){
+        def user = User.findById(params.id)
+        byte[] photo
+        if(user?.photo){
+//            log.info("PHOTO IS UPLOADED")
             photo = user.photo
         }else{
-            log.info("PHOTO NOT FOUND")
-            photo = assetResourceLocator?.findAssetForURI('image.png')?.getInputStream()?.bytes
+//            log.info("PHOTO NOT FOUND")
+            photo = assetResourceLocator.findAssetForURI('image.png').byteArray
         }
+        OutputStream outputStream = response.getOutputStream()
+        outputStream.write(photo)
+        outputStream.flush()
+        outputStream.close()
     }
-    def register(){
+/*    def register(){
         User newUser = new User(firstName: params.firstName, lastName: params.lastName, userName: params.userName,
         email: params.email, password: params.password, confirmPassword: params.confirmPassword,
                 active: true, photo: params.photo.bytes)
@@ -49,5 +72,5 @@ class UserController {
             forward(controller: 'login', action: 'index')
             render "Not able to create user"
         }
-    }
+    }*/
 }

@@ -10,7 +10,7 @@
             <div class="col-sm-12">
                 <div class="row">
                     <div class="col-sm-3">
-                        <img src="image.png">
+                        <ls:userImage id="${session.user.id}" height="110" width="110"/>
                     </div>
 
                     <div class="col-sm-9">
@@ -20,7 +20,7 @@
 
                         <div class="row">
                             <div class="col-sm-6">
-                                <h6 class="text-muted">@sumit</h6>
+                                <h6 class="text-muted">@${session.user.firstName}</h6>
                             </div>
 
                             <div class="col-sm-3">

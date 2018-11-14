@@ -39,15 +39,15 @@
         <a class="navbar-brand" href="${createLink(controller: 'login', action: 'index')}">Link Sharing</a>
     </span>
                 <g:form controller="search" action="index">
-                <div class="input-group" class="col align-self-end">
-                    <input type="text" class="form-control " placeholder="Search" name="search">
+                    <div class="input-group" class="col align-self-end">
+                        <input type="text" class="form-control " placeholder="Search" name="search">
 
-                    <div class="input-group-btn">
-                        <button class="btn btn-default" type="submit"><i class="glyphicon glyphicon-search"></i>
-                        </button>
+                        <div class="input-group-btn">
+                            <button class="btn btn-default" type="submit"><i class="glyphicon glyphicon-search"></i>
+                            </button>
+                        </div>
                     </div>
-                </div>
-</g:form>
+                </g:form>
             </div>
         </span>
     </div>

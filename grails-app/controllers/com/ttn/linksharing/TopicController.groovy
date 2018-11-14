@@ -65,4 +65,5 @@ class TopicController {
         }
         redirect(controller: 'user', action: 'index')
     }
+
 }

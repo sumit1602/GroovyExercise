@@ -9,6 +9,16 @@ class LinkResourceController {
 
     }
     def save(params){
-//        Resource linkResource =new LinkResource(createdBy: params.createdBy, description: params.description, topic: params.topic, url: params.url)
+        if(params.createdBy == session.user) {
+            Resource linkResource = new LinkResource([createdBy: params.createdBy, description: params.description,
+                                                      topic    : params.topic, url: params.url])
+            if (linkResource.save(flush: true)) {
+                log.info("\"linkResource saved Successfully\"")
+                render flash.message = "linkResource saved Successfully"
+            } else {
+                log.info("\"error creating linkResource\"")
+                render flash.message = "error creating linkResource"
+            }
+        }
     }
 }
