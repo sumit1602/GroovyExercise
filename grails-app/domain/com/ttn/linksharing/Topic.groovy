@@ -12,11 +12,9 @@ class Topic {
 
     static hasMany = [subscriptions: Subscription, resources: Resource]
 
-    static belongsTo = [user: User]
 
     static mapping = {
         sort name: 'asc'
-
     }
 
     def afterInsert() {

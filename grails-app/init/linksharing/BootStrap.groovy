@@ -51,7 +51,7 @@ class BootStrap {
 
     List<Topic> createTopics(List<User> users) {
         List topics = []
-        if (Topic.count == 0) {
+        if (Topic.count() == 0) {
             users.each { User user ->
                 (1..5).each {
                     Topic topic = new Topic(name: "Grails${it}", visibility: Visibility.PUBLIC, createdBy: user)

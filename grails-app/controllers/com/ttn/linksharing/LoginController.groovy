@@ -1,3 +1,4 @@
+
 package com.ttn.linksharing
 
 class LoginController {
@@ -7,8 +8,9 @@ class LoginController {
             log.info "REDIRECTING TO USER INDEX"
             forward(controller: 'User', action: 'index')
         } else {
-//            List recentShareList = Resource.getRecentShares()
-//            List topPostsList = Resource.getTopPost()
+            List recentShareList = Resource.getRecentShares()
+            List topPostList = Resource.getTopPost()
+            render(controller: 'login' ,view: 'index' , model: [recentShareList: recentShareList, topPostList: topPostList])
         }
 //        render session['user']
     }

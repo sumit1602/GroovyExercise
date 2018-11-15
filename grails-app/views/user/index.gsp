@@ -48,11 +48,10 @@
         <br><br>
 
 
-        %{--____--}%
-
-
 
         <g:render template="/resource/recentShares"></g:render>
+
+        <br><br>
 
         <g:render template="/resource/topPosts"></g:render>
 
@@ -61,22 +60,12 @@
     <div class="col-lg-6">
 
         <br><br>
-        <g:render template="/resource/createLinkResource"></g:render>
         <g:render template="/user/inbox"></g:render>
         <br><br>
 
-        <br><br>
-        <g:render template="/resource/createDocumentResource"></g:render>
-        %{--<g:render template="subscriptions"></g:render>--}%
 
-        <br>
-
-        %{--<div class="col-lg-12"><br></div>--}%
-        %{--<br>--}%
-
-        %{--<g:render template="/topic/trendingTopics"></g:render>--}%
-
-        %{--</div>--}%
+    </div>
+</div>
 
 </body>
 </html>

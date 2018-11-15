@@ -28,6 +28,8 @@
                             <select class="form-control " name="topicVisibility">
                                 <option value="">Public</option>
                                 <option value="">Private</option>
+                                %{--<option value="${enums.Visibility.PUBLIC}">Public</option>--}%
+                                %{--<option value="${enums.Visibility.PRIVATE}">Private</option>--}%
                             </select>
                         </div>
 
@@ -36,9 +38,9 @@
 
 
                         <div class="modal-footer">
-                            <button type="button" class="btn btn-default" data-dismiss="modal">Share</button>
+                            <button type="submit" class="btn btn-default">Create</button>
 
-                            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                            <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
                         </div>
 
                 </g:form>

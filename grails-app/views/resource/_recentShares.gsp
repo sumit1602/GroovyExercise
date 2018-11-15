@@ -1,44 +1,38 @@
-    <div class="col-sm-12"><div class="panel panel-primary">
+<div class="col-md-12">
+    <div class="panel panel-primary">
         <div class="panel-heading">Recent Shares</div>
+        <g:each in="${recentShareList}" var="recentShare">
 
-        <div class="panel-body" style="height: 130px; width: 100%;">
-            <div class="media">
-                <div class="media-left">
-                    <img src="avatar.jpg" class="media-object" style="width:90px; border: 1px solid black;">
-                </div>
+            <div class="panel-body" style="height: 130px; width: 100%;">
+                    <div class="col-lg-2">
+                        <ls:userImage id="${recentShare.resourceId}" height="100" width="100"/>
+                    </div>
 
-                <div class="media-body">
-                    <h4 class="media-heading">Sumit Chaudhary</h4>
-                    <p>I'm self motivating and hard-working guy,I always want to learn new things.</p>
-                    <div><a href="#" style="  color: red; "><i class="fab fa-google-plus-g"></i></a>
-                        <a href="#" style="  color: blue; "><i class="fab fa-facebook-square"></i></a>
-                        <a href="#" style="  color: blue; "><i class="fab fa-twitter"></i></a>
-                        <p style="text-align: right;margin-top: -20px"><a>View post</a></p></div>
-                </div>
+                    <div class="col-md-10">
+                        <h4 class="col-lg-8" style="text-align: left">${recentShare.ownerFullName}<small>@${recentShare.ownerFirstName}</small></h4>
+                        <h4 class="col-lg-4" style="text-align: right" p\>
+                            <a href="${createLink(controller: 'topic', action: 'show', id: recentShare.topicId)}">${recentShare.topicName}</a>
+                        </h4>
+                        <div class="col-lg-12">
+                            <p>${recentShare.resourceDescription}</p>
+                        </div>
+
+                        <div class="col-lg-12">
+                            <a href="#" style="  color: red; "><i class="fab fa-google-plus-g"></i></a>
+                            <a href="#" style="  color: blue; "><i class="fab fa-facebook-square"></i></a>
+                            <a href="#" style="  color: blue; "><i class="fab fa-twitter"></i></a>
+
+                            <p style="text-align: right;margin-top: -20px">
+                                <a href="${createLink(controller: 'resource', action: 'showPosts', id: recentShare.resourceId)}">View post</a>
+                            </p>
+                        </div>
+                    </div>
+
+
+                <br>
             </div>
-            <br>
-        </div>
+            <hr/>
+        </g:each>
 
-        <div class="panel-body" style="height: 130px; width: 100%;">
-            <div class="media">
-                <div class="media-left">
-                    <img src="avatar.jpg" class="media-object" style="width:90px; border: 1px solid black;">
-                </div>
-
-                <div class="media-body">
-                    <h4 class="media-heading">Sumit chaudhary</h4>
-
-                    <p>I'm self motivating and hard-working guy,I always want to learn new things.</p>
-
-                    <div><a href="#" style="  color: red; "><i class="fab fa-google-plus-g"></i></a>  <a href="#"
-                                                                                                         style="  color: blue; "><i
-                                class="fab fa-facebook-square"></i></a>   <a href="#" style="  color: blue; "><i
-                            class="fab fa-twitter"></i></a>
-
-                        <p style="text-align: right;margin-top: -20px"><a>View post</a></p></div>
-                </div>
-            </div>
-            <br>
-        </div>
     </div>
-    </div>
+</div>

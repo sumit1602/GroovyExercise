@@ -2,7 +2,7 @@ package com.ttn.linksharing
 
 class LinkResource extends Resource{
 
-    String url
+    String filePath
     Date dateCreated
     Date lastUpdated
 

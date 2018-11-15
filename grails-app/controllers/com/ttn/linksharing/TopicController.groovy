@@ -12,6 +12,7 @@ class TopicController {
         if (topic) {
             if (topic.visibility == Visibility.PUBLIC) {
                 render "Success (Visibility PUBLIC)"
+                re
             }
             if (topic.visibility == Visibility.PRIVATE) {
                 User user = session.user
@@ -52,18 +53,19 @@ class TopicController {
 //        }
 //    }
     def save(){
-        Topic newTopicAdd = new Topic(createdBy: session.user, name: params.name, visibility: params.visibility)
+        Topic newTopicAdd = new Topic(createdBy: session.user, name: params.topicName, visibility: params.topicVisibility)
         if(newTopicAdd.save(flush: true)){
-            log.info("Topic saved successfully == ${newTopicAdd}")
-            flash.message = "TOPIC SAVED SUCCESSFULLY"
-            session.user.addTo(newTopicAdd)
+            log.info("Topic saved successfully = ${newTopicAdd}")
+//            flash.message = "TOPIC SAVED SUCCESSFULLY"
+            session.user.addToTopic(newTopicAdd)
             flash.message = "SUCCESSFULLY SAVED "
         }else{
             log.error("ERROR WHILE SAVING ${newTopicAdd} TOPIC")
-            newTopicAdd.errors.allErrors.each {println it}
+//            newTopicAdd.errors.allErrors.each {println it}
             flash.error = "TOPIC NOT SAVED"
+            render "ERROR WHILE SAVING ${newTopicAdd} TOPIC"
         }
-        redirect(controller: 'user', action: 'index')
+//        redirect(controller: 'user', action: 'index')
     }
 
 }
