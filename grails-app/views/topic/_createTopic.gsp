@@ -25,12 +25,17 @@
                         </div>
 
                         <div class="col-lg-10">
-                            <select class="form-control " name="topicVisibility">
-                                <option value="">Public</option>
-                                <option value="">Private</option>
-                                %{--<option value="${enums.Visibility.PUBLIC}">Public</option>--}%
-                                %{--<option value="${enums.Visibility.PRIVATE}">Private</option>--}%
-                            </select>
+
+
+                                      %{--<select class="form-control " name="topicVisibility">--}%
+                                %{--<option value="">Public</option>--}%
+                                %{--<option value="">Private</option>--}%
+                                %{--<option value="${PUBLIC}">Public</option>--}%
+                                %{--<option value="${PRIVATE}">Private</option>--}%
+                            %{--</select>--}%
+
+                            <g:select name="visibility" from="${com.ttn.linksharing.enums.Visibility.values()}"/>
+
                         </div>
 
                     </div>

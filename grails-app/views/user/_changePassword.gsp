@@ -12,12 +12,12 @@
             <g:form controller="user" action="changePassword">
                 <div class="form-group col-lg-10">
                     <label>Password*</label>
-                    <input class="form-control" type="text" name="updatedPassword">
+                    <input class="form-control" type="password" name="updatedPassword" required>
                 </div>
 
                 <div class="form-group col-lg-10">
                     <label>Confirm Password*</label>
-                    <input class="form-control" type="password" name="updatedConfirmPassword">
+                    <input class="form-control" type="password" name="updatedConfirmPassword" required>
                 </div>
 
 

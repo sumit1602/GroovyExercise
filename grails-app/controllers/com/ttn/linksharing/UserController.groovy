@@ -45,10 +45,10 @@ def assetResourceLocator
         def user = User.findById(params.id)
         byte[] photo
         if(user?.photo){
-//            log.info("PHOTO IS UPLOADED")
+            log.info("PHOTO IS UPLOADED")
             photo = user.photo
         }else{
-//            log.info("PHOTO NOT FOUND")
+            log.info("PHOTO NOT FOUND")
             photo = assetResourceLocator.findAssetForURI('image.png').byteArray
         }
         OutputStream outputStream = response.getOutputStream()
@@ -75,7 +75,8 @@ def assetResourceLocator
     }*/
 
     def changePassword() {
-        User user = session.user
+//        def email = session.user.email
+        User user=User.findByEmail(session.user.email)
         if (user) {
             user.password = params.updatedPassword
             user.confirmPassword = params.updatedConfirmPassword
@@ -88,6 +89,24 @@ def assetResourceLocator
                 log.info("User with this Email Doesn't exist")
                 flash.error = "User with this Email Doesn't exist"
             }
+        }
+    }
+    def updateUser(){
+        User user=User.findByEmail(session.user.email)
+        if(user){
+            user.firstName = params.updatedFirstName
+            user.lastName = params.updateLastName
+            user.userName = params.updatedUserName
+            user.photo = params.updatedPhoto.bytes
+            if(user.save(flush: true, failOnError: true)){
+                log.info("Your profile is updated")
+                flash.message = "Your profile is updated"
+                forward(controller: 'user', action: 'index')
+            }else{
+                log.info("Your profile is not updated")
+                flash.error= "Your profile is not updated"
+            }
+
         }
     }
 }

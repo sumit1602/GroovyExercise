@@ -30,7 +30,7 @@ class ResourceController {
         }
     }
     def show(Integer resourceId) {
-        Resource resource = Resource.findById(resourceId)
+        Resource resource = Resource.f  indById(resourceId)
         RatingInfoVO ratingInfoVO = resource.getRatingInfo()
         render "TOTAL_VOTES: ${ratingInfoVO.totalVotes} TOTAL_SCORE: ${ratingInfoVO.totalScore} AVERAGE_SCORE: ${ratingInfoVO.averageScore}"
     }

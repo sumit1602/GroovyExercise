@@ -32,7 +32,7 @@
             </div>
         </g:form>
     </div>
-
+%{--<g:each in="${userTopics}" val="topics">--}%
     <div class="panel-body">
         <div class="col-md-12">
             <div class="col-md-3">
@@ -44,7 +44,7 @@
                 <div class="col-lg-12">
 
                     <div class="input-group">
-                        <input type="text" class="form-control" placeholder="Enter Topic name">
+                        <input type="text" class="form-control" placeholder="">
                         <span class="input-group-btn">
                             <button class="btn btn-default" type="button">Save</button>
                         </span>
@@ -132,5 +132,6 @@
             </div>
         </div>
     </div>
+%{--</g:each>--}%
 </div>
 

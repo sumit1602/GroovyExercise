@@ -90,6 +90,7 @@ abstract class Resource {
         ratingInfoVO.totalScore = totalScore()
         ratingInfoVO
     }
+
     def showPost(){
 
     }
