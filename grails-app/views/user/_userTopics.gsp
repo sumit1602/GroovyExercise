@@ -127,11 +127,20 @@
             </div>
 
             <div class="col-lg-1" style="padding: 0px">
-                <a href="#myModal4" data-toggle="modal" data-target="#myModal4">
-                    <i class="glyphicon glyphicon-trash" style="font-size:30px;color:green"></i>
-                </a>
+                <g:form controller="topic" action="delete" >
+                    <input type="hidden" name="id" value="${topics.id}"/>
+                    <button type="submit" class="btn">Basic</button>
+                </g:form>
             </div>
         </div>
+
+      %{--  <g:form href="${createLink(controller: 'topic', action: 'delete')}">
+
+            <div class="col-lg-1" style="padding: 0px">
+                <input type="button" name="id" value="${topics.id}">
+                <i class="glyphicon glyphicon-trash" style="font-size:30px;color:green"></i>
+            </div>
+        </g:form>--}%
 
 
     </div>

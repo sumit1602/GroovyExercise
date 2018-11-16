@@ -29,7 +29,7 @@ def assetResourceLocator
         List topics= Topic.findAllByCreatedBy(user)
         List<TopicVO> userTopics=[]
         topics.each {
-            userTopics.add(new TopicVO(name: it.name,visibility: it.visibility,
+            userTopics.add(new TopicVO(id: it.id, name: it.name,visibility: it.visibility,
                     createdBy: it.createdBy.firstName,subscriptionCount: it.subscriptions.size(), postCount: it.resources.size()))
         }
         render(view: 'editProfile' ,model: [userTopics: userTopics])

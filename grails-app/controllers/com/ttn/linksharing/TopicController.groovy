@@ -29,12 +29,13 @@ class TopicController {
         }
     }
 
-    def delete(Long id) {
-        Topic topic = Topic.load(id)
-        if (topic.id == id) {
+    def delete() {
+        Topic topic = Topic.get(params.id)
+        if (topic) {
             topic.delete(flush: true)
             render "Topic is deleted"
             log.info "---------${topic} is deleted--------"
+            redirect(controller: 'user', action: 'index')
         } else {
             render "Topic not found of given id"
         }

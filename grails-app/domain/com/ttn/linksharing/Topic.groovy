@@ -13,6 +13,8 @@ class Topic {
     static hasMany = [subscriptions: Subscription, resources: Resource]
     static mapping = {
         sort name: 'asc'
+        subscriptions cascade: 'all-delete-orphan'
+        resources cascade: 'all-delete-orphan'
     }
 
     def afterInsert() {
