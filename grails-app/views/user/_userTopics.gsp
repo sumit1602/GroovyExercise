@@ -32,8 +32,9 @@
             </div>
         </g:form>
     </div>
-%{--<g:each in="${userTopics}" val="topics">--}%
+    <g:each in="${userTopics}" var="topics">
     <div class="panel-body">
+
         <div class="col-md-12">
             <div class="col-md-3">
                 <ls:userImage id="${session.user.id}" height="110" width="110"/>
@@ -44,7 +45,7 @@
                 <div class="col-lg-12">
 
                     <div class="input-group">
-                        <input type="text" class="form-control" placeholder="">
+                        <input type="text" class="form-control" placeholder="${topics.name}">
                         <span class="input-group-btn">
                             <button class="btn btn-default" type="button">Save</button>
                         </span>
@@ -54,18 +55,18 @@
 
                 <div class="col-lg-12">
                     <div class="col-sm-6">
-                        <h3 class="text-muted">@${session.user.firstName}</h3>
+                        <h3 class="text-muted">@${topics.createdBy}</h3>
                     </div>
 
                     <div class="col-sm-3">
                         <h4 class="text-muted pull-left">Subscriptions
-                            <p class="text-primary">50</p>
+                            <p class="text-primary">${topics.subscriptionCount}</p>
                         </h4>
                     </div>
 
                     <div class="col-sm-3">
                         <h4 class="text-muted  pull-right">Post
-                            <p class="text-primary">40</p>
+                            <p class="text-primary">${topics.postCount}</p>
                         </h4>
                     </div>
 
@@ -131,7 +132,10 @@
                 </a>
             </div>
         </div>
+
+
     </div>
-%{--</g:each>--}%
+        <hr />
+    </g:each>
 </div>
 

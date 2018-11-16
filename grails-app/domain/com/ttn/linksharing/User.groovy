@@ -1,6 +1,7 @@
 package com.ttn.linksharing
 
 import com.ttn.linksharing.co.SearchCO
+import com.ttn.linksharing.vo.SubscriptionsVO
 
 class User {
     String email
@@ -22,6 +23,7 @@ class User {
     static mapping = {
         photo(sqlType: "longblob")
         sort id: 'desc'
+        subscriptions lazy: false
     }
 
     static constraints = {
@@ -66,6 +68,19 @@ class User {
             this.subscriptions.size()
         else
             0
+    }
+
+
+    List<SubscriptionsVO> getUserSubscriptions(){
+        if(this.subscriptions){
+            List<SubscriptionsVO> subscriptionList =[]
+            this.subscriptions.each {
+                subscriptionList.add(new SubscriptionsVO(topicName: it.topic.name, ownerFirstName: it.topic.createdBy.firstName,
+                resourceCount: it.topic.resources.size(), subscriptionCount: it.topic.subscriptions.size(), topicVisibility: it.topic.visibility,
+                subscriptionSeriousness: it.seriousness))
+            }
+        }
+            subscriptionList
     }
 
     Integer getTopicCount() {

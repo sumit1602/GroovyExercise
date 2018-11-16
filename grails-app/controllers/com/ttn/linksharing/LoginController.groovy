@@ -4,7 +4,7 @@ package com.ttn.linksharing
 class LoginController {
 
     def index() {
-        if (session['user']) {
+        if (session.user) {
             log.info "REDIRECTING TO USER INDEX"
             forward(controller: 'User', action: 'index')
         } else {

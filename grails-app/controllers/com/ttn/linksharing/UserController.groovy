@@ -1,5 +1,8 @@
 package com.ttn.linksharing
 
+
+import com.ttn.linksharing.vo.TopicVO
+
 class UserController {
 
 def assetResourceLocator
@@ -7,12 +10,14 @@ def assetResourceLocator
     def index() {
         if(session.user){
             log.info("--USER INDEX , SESSION USER , --")
-
+//            List<SubscriptionsVO> subscriptionList = session.user.getUserSubscriptions()
+//            render(view: 'index' , model:[subscriptionList: subscriptionList])
         }else{
-//            redirect(controller: 'login' , action: 'index')
+            redirect(controller: 'login' , action: 'index')
         }
 
     }
+
     def userList(){
 
     }
@@ -20,8 +25,17 @@ def assetResourceLocator
         render view: '/resource/show'
     }
     def editProfile(){
-        render view: '/user/profile'
+        User user=session.user
+        List topics= Topic.findAllByCreatedBy(user)
+        List<TopicVO> userTopics=[]
+        topics.each {
+            userTopics.add(new TopicVO(name: it.name,visibility: it.visibility,
+                    createdBy: it.createdBy.firstName,subscriptionCount: it.subscriptions.size(), postCount: it.resources.size()))
+        }
+        render(view: 'editProfile' ,model: [userTopics: userTopics])
     }
+
+
     def showUserList(){
         render view: '/user/userList'
     }
@@ -91,6 +105,7 @@ def assetResourceLocator
             }
         }
     }
+
     def updateUser(){
         User user=User.findByEmail(session.user.email)
         if(user){

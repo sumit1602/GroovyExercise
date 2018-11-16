@@ -1,7 +1,7 @@
 <div class="col-lg-12 " style="margin-top: 25px">
 
     <div class=" panel panel-default  ">
-        <div class="panel-heading " style="background:#007efc">
+        <div class="panel-heading " style="background:#ADFF2F">
 
             <p>
 
@@ -12,12 +12,12 @@
             <g:form controller="user" action="changePassword">
                 <div class="form-group col-lg-10">
                     <label>Password*</label>
-                    <input class="form-control" type="password" name="updatedPassword" required>
+                    <input class="form-control" type="text" placeholder="Enter new password" name="updatedPassword" required>
                 </div>
 
                 <div class="form-group col-lg-10">
                     <label>Confirm Password*</label>
-                    <input class="form-control" type="password" name="updatedConfirmPassword" required>
+                    <input class="form-control" type="password" placeholder="Re-Enter new password" name="updatedConfirmPassword" required>
                 </div>
 
 

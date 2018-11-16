@@ -49,11 +49,11 @@
 
 
 
-        <g:render template="/resource/recentShares"></g:render>
+        <g:render template="subscriptions"></g:render>
 
         <br><br>
 
-        <g:render template="/resource/topPosts"></g:render>
+        <g:render template="/topic/trendingTopics"></g:render>
 
     </div>
 

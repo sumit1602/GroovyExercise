@@ -35,7 +35,7 @@
                             %{--</select>--}%
 
                             <g:select name="visibility" from="${com.ttn.linksharing.enums.Visibility.values()}"/>
-
+                                      %{--</select>--}%
                         </div>
 
                     </div>
@@ -43,8 +43,7 @@
 
 
                         <div class="modal-footer">
-                            <button type="submit" class="btn btn-default">Create</button>
-
+                            <button type="submit" class="btn btn-primary">Create</button>
                             <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
                         </div>
 

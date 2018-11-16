@@ -11,8 +11,6 @@ class Topic {
     Date lastUpdated
 
     static hasMany = [subscriptions: Subscription, resources: Resource]
-
-
     static mapping = {
         sort name: 'asc'
     }

@@ -11,24 +11,24 @@
             <g:uploadForm controller="user" action="updateUser" enctype="multipart/form-data">
                 <div class="form-group col-lg-10">
                     <label>First Name*</label>
-                    <input class="form-control" type="text" placeholder="Enter your firstName" name="updatedFirstName" >
+                    <input class="form-control" type="text" placeholder="Enter your firstName" name="updatedFirstName" required>
                 </div>
 
                 <div class="form-group col-lg-10">
                     <label>Last Name*</label>
-                    <input class="form-control" type="text" placeholder="Enter your lastName" name="updateLastName" >
+                    <input class="form-control" type="text" placeholder="Enter your lastName" name="updateLastName" required>
                 </div>
 
                 <div class="form-group col-lg-10">
                     <label>Username*</label>
-                    <input class="form-control" type="text" placeholder="Enter your username" name="updatedUsername" >
+                    <input class="form-control" type="text" placeholder="Enter your username" name="updatedUsername" required>
                 </div>
 
                 <div class="col-lg-2"></div>
 
                 <div class="form-group col-lg-10">
                     <label>Photo</label>
-                    <input class="form-control" align="right" type="file" name="updatedPhoto">
+                    <input class="form-control" align="right" type="file" name="updatedPhoto" >
                 </div>
 
                 <div class="col-lg-12"></div>

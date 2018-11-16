@@ -13,16 +13,16 @@
 
     <div class="col-lg-7">
 
-        <g:render template="profile1"></g:render>
+        <g:render template="userProfileInfo"></g:render>
         <br/><br/>
-        <g:render template="profileTopic"></g:render>
+        <g:render template="userTopics"></g:render>
 
     </div>
 
     <div class="col-lg-5">
 
-        <g:render template="editProfile"></g:render>
-        <g:render template="changedPassword"></g:render>
+        <g:render template="userInfoUpdate"></g:render>
+        <g:render template="userChangePassword"></g:render>
 
     </div>
 </div>

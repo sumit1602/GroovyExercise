@@ -7,12 +7,11 @@ class TopicController {
 
     def index() {}
 
-    def show(Long id,ResourceSearchCO resourceSearchCO) {
+    def show(Long id, ResourceSearchCO resourceSearchCO) {
         Topic topic = Topic.read(id)
         if (topic) {
             if (topic.visibility == Visibility.PUBLIC) {
                 render "Success (Visibility PUBLIC)"
-                re
             }
             if (topic.visibility == Visibility.PRIVATE) {
                 User user = session.user
@@ -41,7 +40,6 @@ class TopicController {
         }
     }
 
-
 //    def save() {
 //        User user = session.user
 //        log.info("Current Logged In User : ${user?.firstName}")
@@ -52,24 +50,22 @@ class TopicController {
 //            }
 //        }
 //    }
-    def save(){
+    def save() {
         User user = session.user
-        if(session.user) {
+        if (session.user) {
             Topic newTopicAdd = new Topic(createdBy: user, name: params.topicName, visibility: params.visibility)
-            if (newTopicAdd.save(flush: true, failOnError: true)) {
+            if (newTopicAdd.save(flush: true)) {
                 log.info("Topic saved successfully = ${newTopicAdd}")
-//            flash.message = "TOPIC SAVED SUCCESSFULLY"
-//            session.user.addToTopic(newTopicAdd)
-                redirect(controller: 'user', action: 'index')
+                flash.message = "TOPIC SAVED SUCCESSFULLY"
+//                session.user.addToTopics(newTopicAdd)
                 flash.message = "SUCCESSFULLY SAVED "
             } else {
                 log.info("ERROR WHILE SAVING ${newTopicAdd} TOPIC")
-//            newTopicAdd.errors.allErrors.each {println it}
+                newTopicAdd.errors.allErrors.each { println it }
                 flash.error = "TOPIC NOT SAVED"
                 render "ERROR WHILE SAVING ${newTopicAdd} TOPIC"
             }
+        redirect(controller: 'user', action: 'index')
         }
-//        redirect(controller: 'user', action: 'index')
     }
-
 }

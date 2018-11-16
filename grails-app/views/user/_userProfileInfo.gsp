@@ -13,7 +13,7 @@
                 </h4>
 
                 <h6 class="text-muted col-sm-6">Subscriptions
-                    <p class="text-primary">50</p>
+                    <p class="text-primary"></p>
                 </h6>
 
                 <h6 class="text-muted col-sm-6">Topics
