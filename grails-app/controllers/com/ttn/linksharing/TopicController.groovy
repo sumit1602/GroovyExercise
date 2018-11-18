@@ -88,4 +88,8 @@ class TopicController {
 
         }
     }
+//    def invite(User id, User email){
+//        User user= User.findById(id)
+//        Topic topic = Topic.findByCreatedBy(user)
+//    }
 }
