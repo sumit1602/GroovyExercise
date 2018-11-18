@@ -81,14 +81,16 @@
                             </div>
 
                             <div class="col-lg-12" style="text-align: ">
-                                <i class="fa fa-facebook-square fa-lg" aria-hidden="true"></i>
+                                <i class="fa fa-facebook-square fa-lg" href="https://newers.facebook.com/" aria-hidden="true"></i>
                                 <i class="fa fa-google-plus fa-lg" aria-hidden="true"></i>
                                 <i class="fa fa-twitter-square fa-lg" aria-hidden="true"></i>
                                 <span class="pull-right" style="margin-right: 0px;color: #007efc">
                                     <g:if test="${session.user}">
-                                        <a href="#">View Link</a>
-
-                                        <a href="#">Download</a>
+                                        <g:if test="${session.user}">
+                                            <a href="${createLink(controller: 'resource', action:'viewLink', id:id)}">View Link</a>
+                                            <a href="${createLink(controller: 'resource', action:'downloadDocument', id:id)}">Download</a>
+                                            <a href="${createLink(controller: 'resource', action:'delete', id:id)}">Delete</a>
+                                        </g:if>
                                     </g:if>
                                 </span>
                             </div>

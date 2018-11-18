@@ -55,8 +55,8 @@ class LinksharingTagLib {
 
     }
     def subscriptionCount = { attrs, body ->
-        Long userId = attrs.id
-        Long topicId = attrs.id
+        Long userId = attrs.userId
+        Long topicId = attrs.topicId
         if (userId) {
             out << Subscription.countByUser(User.load(userId))
 
@@ -71,7 +71,7 @@ class LinksharingTagLib {
     }
 
     def resourceCount = { attrs, body ->
-        Topic topic = Topic.load(attrs.id)
+        Topic topic = Topic.load(attrs.userId)
         if (topic) {
             out << Resource.countByTopic(topic)
         } else {
@@ -80,7 +80,7 @@ class LinksharingTagLib {
     }
 
     def topicCount = { attrs, body ->
-        User user = User.load(attrs.id)
+        User user = User.load(attrs.userId)
         if (user) {
             out << Topic.countByCreatedBy(user)
         }

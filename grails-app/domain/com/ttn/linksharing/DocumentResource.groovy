@@ -14,4 +14,24 @@ class DocumentResource extends Resource{
 
     }
 
+
+    @Override
+    public String toString() {
+        return "DocumentResource{" +
+                "filePath='" + filePath + '\'' +
+                '}';
+    }
+
+    @Override
+    def deleteFile() {
+        String file=this.filePath
+        if(new File(file).delete()){
+            return true
+        }
+    }
+
+    @Override
+    def getType() {
+        return null
+    }
 }

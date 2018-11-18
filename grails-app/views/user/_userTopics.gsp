@@ -43,13 +43,13 @@
 
             <div class="col-lg-9">
                 <div class="col-lg-12">
-
-                    <div class="input-group">
-                        <input type="text" class="form-control" placeholder="${topics.name}">
-                        <span class="input-group-btn">
-                            <button class="btn btn-default" type="button">Save</button>
-                        </span>
-                    </div>
+                    <g:form controller="topic" action="changeName" class="form-inline">
+                        <div class="form-group">
+                            <input type="text" class="form-control" name="newTopicName" placeholder="${topics.name}">
+                            <g:hiddenField name="id" value="${topics.id}"/>
+                                <button class="btn btn-default" type="submit">Save</button>
+                        </div>
+                    </g:form>
                 </div>
 
 
@@ -74,8 +74,9 @@
             </div>
 
         </div>
-        <br>
-        <br>
+        <div class="col-lg-12">
+
+        </div>
 
         <div class="col-lg-12">
             %{--<select class="col-lg-4" name="subscriptionSeriousness">--}%
@@ -128,8 +129,10 @@
 
             <div class="col-lg-1" style="padding: 0px">
                 <g:form controller="topic" action="delete" >
-                    <input type="hidden" name="id" value="${topics.id}"/>
-                    <button type="submit" class="btn">Basic</button>
+                    <input type="hidden"  type="button" name="id" value="${topics.id}"/>
+                    <button type="submit" class="btn"><i class="glyphicon glyphicon-trash" style="font-size:25px;color:black"></i>
+                    </button>
+
                 </g:form>
             </div>
         </div>

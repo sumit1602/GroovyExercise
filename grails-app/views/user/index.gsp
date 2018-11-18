@@ -29,11 +29,11 @@
                             <div class="row">
 
                                 <h6 class="text-muted col-sm-6">Subscriptions
-                                    <p class="text-primary">30</p>
+                                <p class="text-primary"><ls:subscriptionCount userId="${session.user.id}"/></p>
                                 </h6>
 
                                 <h6 class="text-muted col-sm-6">Topics
-                                    <p class="text-primary">50</p>
+                                    <p class="text-primary"><ls:topicCount userId="${session.user.id}"/></p>
                                 </h6>
 
                             </div>
@@ -46,16 +46,19 @@
 
 
         <br><br>
-
-
-
-        <g:render template="subscriptions"></g:render>
+        <div class="col-lg-12">
+            <g:render template="subscriptions"></g:render>
+        </div>
 
         <br><br>
+        <div class="col-lg-12">
+            <g:render template="/topic/trendingTopics"></g:render>
+        </div>
 
-        <g:render template="/topic/trendingTopics"></g:render>
 
     </div>
+
+
 
     <div class="col-lg-6">
 

@@ -46,9 +46,12 @@ class LoginController {
             log.info("user created: ${newUser}")
             forward(controller: 'User', action: 'index')
             render "User created successfully"
+          render  flash.message ="User created successfully, welcome to your dashboard"
         } else {
             log.info("Error in Creating User: ")
-            render "Not able to create user"
+//            render "Not able to create user"
+            render flash.error ="Not able to create user, please enter correct password"
+            redirect(controller: 'login', action: 'index')
         }
     }
 

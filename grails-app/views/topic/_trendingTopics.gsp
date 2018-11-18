@@ -25,7 +25,7 @@
 
                             <div class="col-sm-3">
                                 <h6 class="text-muted pull-left">Subscriptions</h6>
-                                <h6 class="text-primary">50</h6>
+                                <p class="text-primary"><ls:subscriptionCount userId="${session.user.id}"/></p>
                             </div>
 
                             <div class="col-sm-3">
@@ -33,7 +33,7 @@
                                     <br>
                                     <br>
 
-                                    <p class="text-primary">40</p>
+                                    <p class="text-primary"><ls:resourceCount userId="${session.user.id}"/></p>
                                 </h6>
                             </div>
 

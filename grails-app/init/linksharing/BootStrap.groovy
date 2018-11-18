@@ -74,7 +74,7 @@ class BootStrap {
             println("--RESOURCELIST IS NULL,WE CAN PUT LINK AND DOCUMENT RESOURCE THERE--")
             topics.each { Topic topic ->
                 2.times {
-                    LinkResource linkResource = new LinkResource(filePath: "http://www.tothenew.com/", createdBy: topic.createdBy, description: topic.name, topic: topic)
+                    LinkResource linkResource = new LinkResource(url: "http://www.tothenew.com/", createdBy: topic.createdBy, description: topic.name, topic: topic)
                     if (linkResource.save(flush: true, failOnError: true)) {
                         resourceList.add(linkResource)
                         log.info("LinkResource ${linkResource} saved succesfully")

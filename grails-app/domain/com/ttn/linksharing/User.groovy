@@ -28,24 +28,27 @@ class User {
 
     static constraints = {
         email unique: true, blank: false, nullable: false, email: true
-        password(size: 5..15, blank: false, nullable: false)
+        password size: 5..15, blank: false, nullable: false, bindable:true , validator: {password, obj ->
+            obj.confirmPassword == password ? true : ['invalid.matchingpasswords']
+        }
+
         firstName unique: true, blank: false, nullable: false
         lastName(blank: false, nullable: false)
         photo nullable: true
         admin nullable: true
         active nullable: true
-        confirmPassword(size: 5..15, blank: false, nullable: false, bindable: true, validator: { val, obj ->
-            if (obj.hasProperty('id')) {
-                if (val == obj.password) {
-                    return true
-                } else {
-                    return false
-                }
-            }
-        })
+//        confirmPassword(size: 5..15, blank: false, nullable: false, bindable: true, validator: { val, obj ->
+//            if (obj.hasProperty('id')) {
+//                if (val == obj.password) {
+//                    return true
+//                } else {
+//                    return false
+//                }
+//            }
+//        })
     }
 
-    List<Resource> getUnReadResources(SearchCO searchCO) {
+    List<Resource> getUnReadResources(SearchCO searchCO, User user) {
         List<ReadingItem> unreaditems = ReadingItem.createCriteria().list(offset: 0, max: 10) {
             eq('isRead', false)
             eq('user', this)
@@ -89,24 +92,51 @@ class User {
         else
             0
     }
+//
+//    List<String> getUserTopics() {
+//        List<String> userTopics = []
+//        if (this.topics) {
+//            this.topics.each {
+//                userTopics.add(it.name)
+//            }
+//        }
+//        userTopics
+//    }
 
-    List<String> getUserTopics() {
-        List<String> userTopics = []
-        if (this.topics) {
-            this.topics.each {
-                userTopics.add(it.name)
-            }
+    List getUserTopics(){
+        List topic=Topic.findAllByCreatedBy(this)
+        return topic
+    }
+    def isSubscribed(Long id){
+        Topic topic =Topic.findById(id)
+        Subscription subscription =Subscription.findByTopic(topic)
+        if(subscription){
+            log.info("Subscription is found")
+            return true
+        }else{
+            log.info("Subscription not found")
         }
-        userTopics
+    }
+    def canDeleteResource(Long id){
+        Resource resource=Resource.get(id)
+        if(resource){
+            if(resource.delete(flush: true)){
+                log.info("resource deleted")
+                return true
+            }else{
+                resource.errors.allErrors.collect {message(code:it).join(",")}
+                log.info("UNable To delete")
+                return false
+            }
+        }else{
+            log.info("no resource found")
+            return false
+        }
     }
 
 
     static transients = ['userName','fullName', 'getSubscribedTopic()']
 
-
-//    String getFullName() {
-//        [$ { firstName }, $ { lastName }].findAll { it }.join(' ')
-//    }
 
     String getFullName(){
         this.fullName = this.firstName + " " +this.lastName

@@ -2,6 +2,7 @@ package com.ttn.linksharing
 
 
 import com.ttn.linksharing.vo.TopicVO
+import com.ttn.linksharing.vo.UserVO
 
 class UserController {
 
@@ -18,9 +19,8 @@ def assetResourceLocator
 
     }
 
-    def userList(){
 
-    }
+
     def showTopics(){
         render view: '/resource/show'
     }
@@ -35,9 +35,21 @@ def assetResourceLocator
         render(view: 'editProfile' ,model: [userTopics: userTopics])
     }
 
+    def userList(){
+        List<User> userList = User.findAllByAdmin(false)
+        if (userList) {
+            List<UserVO> allUsers = []
+            userList.each {
+                allUsers.add(new UserVO(fullName: it.getFullName(), userName: it.getUserName(), email: it.email, userId: it.id,
+                        resourceCount:it.topics.size(), subscriptionCount: it.subscriptions.size(), isActive: it.active))
+            }
+            allUsers
+        }
+    }
 
     def showUserList(){
-        render view: '/user/userList'
+        List<UserVO> allUsers = userList()
+        render(view: 'userList', model: [allUsers: allUsers])
     }
 //    def image(){
 //        User user = User.findById(params.id)

@@ -22,10 +22,9 @@
                         <p>${topPosts.resourceDescription}</p>
 
                         <div>
-                            <a href="#" style="  color: red; "><i class="fab fa-google-plus-g"></i></a>
-                            <a href="#" style="  color: blue; "><i class="fab fa-facebook-square"></i></a>
-                            <a href="#" style="  color: blue; "><i class="fab fa-twitter"></i></a>
-
+                            <a href="https://mail.google.com/mail/u/0/#inbox" style="  color: red; "><i class="fab fa-google-plus-g"></i></a>
+                            <a href="https://newers.facebook.com/" style="  color: blue; "><i class="fab fa-facebook-square"></i></a>
+                            <a href="https://twitter.com/login" style="  color: blue; "><i class="fab fa-twitter"></i></a>
                             <p style="text-align: right;margin-top: -20px">
                                 <a href="${createLink(controller: 'resource', action: 'showPosts', id: topPosts.resourceId)}">View post</a>
                             </p>

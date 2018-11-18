@@ -4,7 +4,7 @@
         <div class="panel-heading " style="background:#ADFF2F">
             <p>
 
-            <h3 style="color:white">Profile</h3></p>
+            <h3 style="color:white">Update Profile</h3></p>
         </div>
 
         <div class="panel-body ">

@@ -33,11 +33,13 @@ class TopicController {
         Topic topic = Topic.get(params.id)
         if (topic) {
             topic.delete(flush: true)
-            render "Topic is deleted"
+//            render "Topic is deleted"
+            flash.message = "Topic is deleted"
             log.info "---------${topic} is deleted--------"
             redirect(controller: 'user', action: 'index')
         } else {
-            render "Topic not found of given id"
+//            render "Topic not found of given id"
+            flash.error = "Topic not found of given id"
         }
     }
 
@@ -59,7 +61,7 @@ class TopicController {
                 log.info("Topic saved successfully = ${newTopicAdd}")
                 flash.message = "TOPIC SAVED SUCCESSFULLY"
 //                session.user.addToTopics(newTopicAdd)
-                flash.message = "SUCCESSFULLY SAVED "
+                flash.message = "Topic saved successfully = ${newTopicAdd}"
             } else {
                 log.info("ERROR WHILE SAVING ${newTopicAdd} TOPIC")
                 newTopicAdd.errors.allErrors.each { println it }
@@ -67,6 +69,23 @@ class TopicController {
                 render "ERROR WHILE SAVING ${newTopicAdd} TOPIC"
             }
         redirect(controller: 'user', action: 'index')
+        }
+    }
+    def changeName(){
+        Topic topic=Topic.findById(params.id)
+        if(topic) {
+            topic.name = params.newTopicName
+            if (topic.save(flush: true)) {
+//            render "TOPIC NAME CHANGED FROM${topic.topicName} to ${topic.name}"
+                log.info("TOPIC NAME SUCCESSFULLY CHANGED")
+                flash.message = "TOPIC NAME CHANGED TO ${topic.name}"
+                redirect(controller: 'user',action: 'index')
+            } else {
+                log.info("ERROR WHILE CHANGING TOPIC NAME")
+                topic.errors.allErrors.each { println it }
+                flash.error = "ERROR WHILE CHANGING TOPIC NAME"
+            }
+
         }
     }
 }

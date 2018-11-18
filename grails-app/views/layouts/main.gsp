@@ -100,6 +100,9 @@
                         <li><g:link controller="user" action="showTopics">Topic</g:link></li>
                         <li><g:link controller="resource" action="showPosts">Post</g:link></li>
                     </g:if>
+                    <g:if test ="${session.user.admin}">
+                        <li><g:link controller="user" action="showUserList">Admin</g:link></li>
+                    </g:if>
                     <li><g:link controller="login" action="logout">Logout</g:link></li>
                 </ul>
             </li>

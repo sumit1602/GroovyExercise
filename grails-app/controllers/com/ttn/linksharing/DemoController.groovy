@@ -1,8 +1,5 @@
 package com.ttn.linksharing
 
-import com.ttn.linksharing.co.BookCo
-import com.ttn.linksharing.co.UserCo
-
 class DemoController {
 //    static scaffold = Person
     def index() {

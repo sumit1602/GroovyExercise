@@ -19,6 +19,7 @@ abstract class Resource {
     static mapping = {
         description(sqlType: "text")
 //        description(topicName: Topic.name)
+        readingItems cascade: 'all-delete-orphan'
     }
     static constraints = {
 
@@ -72,7 +73,7 @@ abstract class Resource {
                 count('r.id', 'count')
                 property('r.description')
             }
-            //maxResults(5)
+            maxResults(5)
             order('count','desc')
         }
         List <TopPostVO> topPostVOList= []
@@ -107,10 +108,15 @@ abstract class Resource {
         }
         recentShareVOList
     }
-
-
-    def deleteFile(){
-
+    def canViewBy(){
+        if(this.topic.canViewedBy(session.user)){
+            log.info("RESOURCE CAN VIEWED")
+        }
     }
+
+
+    abstract deleteFile();
+    abstract getType();
+
 
 }

@@ -13,11 +13,11 @@
                 </h4>
 
                 <h6 class="text-muted col-sm-6">Subscriptions
-                    <p class="text-primary"></p>
+                    <p class="text-primary"><ls:subscriptionCount userId="${session.user.id}"/></p>
                 </h6>
 
                 <h6 class="text-muted col-sm-6">Topics
-                    <p class="text-primary">30</p>
+                    <p class="text-primary"><ls:topicCount userId="${session.user.id}"/></p>
                 </h6>
 
             </div>

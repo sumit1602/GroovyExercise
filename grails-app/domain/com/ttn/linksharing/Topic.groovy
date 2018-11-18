@@ -15,7 +15,9 @@ class Topic {
         sort name: 'asc'
         subscriptions cascade: 'all-delete-orphan'
         resources cascade: 'all-delete-orphan'
+        readingItems cascade: 'all-delete-orphan'
     }
+
 
     def afterInsert() {
         withNewSession { session ->
@@ -54,12 +56,32 @@ class Topic {
         subscribedUsers
     }
 
-    def canViewedBy(){
-
+    def isPublic(Topic topic){
+        if(topic.visibility.PUBLIC){
+            log.info("Topic is public")
+            return true
+        }else{
+            log.info("Topic is private")
+            return false
+        }
     }
+
+    def canViewedBy(User user){
+        Subscription subscription = Subscription.findByUserAndTopic(user,this)
+        if(isPublic(this) || subscription || user.isAdmin()){
+            log.info("Can be viewed by ${user}")
+            return true
+        }else{
+            log.info("Cannot be viewed")
+            return false
+        }
+    }
+
     def getScore(){
 
     }
+
+
     static constraints = {
         name(nullable: false, blank: false, unique: 'createdBy')
         createdBy nullable: false
@@ -67,11 +89,9 @@ class Topic {
     }
 
 
-
     @Override
     public String toString() {
-        return "Topic{" +
-                "TopicName='" + name + '\'' +
-                '}';
+        return "${name} "
     }
+
 }
