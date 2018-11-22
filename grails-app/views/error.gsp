@@ -1,31 +1,38 @@
-<!doctype html>
+<!DOCTYPE html>
 <html>
-    <head>
-        <title><g:if env="development">Grails Runtime Exception</g:if><g:else>Error</g:else></title>
-        <meta name="layout" content="main">
-        <g:if env="development"><asset:stylesheet src="errors.css"/></g:if>
-    </head>
-    <body>
-        <g:if env="development">
-            <g:if test="${Throwable.isInstance(exception)}">
-                <g:renderException exception="${exception}" />
-            </g:if>
-            <g:elseif test="${request.getAttribute('javax.servlet.error.exception')}">
-                <g:renderException exception="${request.getAttribute('javax.servlet.error.exception')}" />
-            </g:elseif>
-            <g:else>
-                <ul class="errors">
-                    <li>An error has occurred</li>
-                    <li>Exception: ${exception}</li>
-                    <li>Message: ${message}</li>
-                    <li>Path: ${path}</li>
-                </ul>
-            </g:else>
-        </g:if>
-        <g:else>
-            <ul class="errors">
-                <li>An error has occurred</li>
-            </ul>
-        </g:else>
-    </body>
+<head>
+    <meta name="layout" content="main"/>
+    <title>500 Page Not Found</title>
+
+</head>
+
+<body>
+<div id="nor">
+    <div class="row">
+        <div class="col-xs-12 CENTER-BLOCK">
+
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-xs-2"></div>
+        <img class="col-xs-8" src="/images/500.jpg"/>
+
+        <div class="col-xs-2"></div>
+    </div>
+
+    <div class="row">
+        <div class="col-xs-6">
+
+        </div>
+
+        <div class="col-xs-6">
+            <g:link controller="login" action="index" style="text-decoration: none">Click to Go Back and Try Again</g:link>
+        </div>
+    </div>
+</div>
+
+
+</body>
+
 </html>

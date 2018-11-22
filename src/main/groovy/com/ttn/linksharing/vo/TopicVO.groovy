@@ -12,6 +12,5 @@ class TopicVO {
     String createdBy
     Integer subscriptionCount
     Integer postCount
-
 }
 

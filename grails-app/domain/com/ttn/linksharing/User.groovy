@@ -32,7 +32,7 @@ class User {
             obj.confirmPassword == password ? true : ['invalid.matchingpasswords']
         }
 
-        firstName unique: true, blank: false, nullable: false
+        firstName blank: false, nullable: false
         lastName(blank: false, nullable: false)
         photo nullable: true
         admin nullable: true

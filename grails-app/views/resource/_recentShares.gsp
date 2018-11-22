@@ -23,7 +23,8 @@
                             <a href="https://twitter.com/login" style="  color: blue; "><i class="fab fa-twitter"></i></a>
 
                             <p style="text-align: right;margin-top: -20px">
-                                <a href="${createLink(controller: 'resource', action: 'showPosts', id: recentShare.resourceId)}">View post</a>
+                                %{--<a href="${createLink(controller: 'resource', action: 'showPosts', id: recentShare.resourceId)}">View post</a>--}%
+                                <a href="${createLink(controller: 'topic', action: 'show', id: "${recentShare.topicId}")}">View post</a>
                             </p>
                         </div>
                     </div>

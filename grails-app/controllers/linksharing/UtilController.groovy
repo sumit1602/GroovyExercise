@@ -1,5 +1,7 @@
 package linksharing
 
+import com.ttn.linksharing.User
+
 //import groovy.util.logging.Commons
 import groovy.util.logging.Slf4j
 
@@ -9,13 +11,22 @@ class UtilController {
 
     def index() {
 
+
 //        log.trace(">>>>THIS IS TRACE")
 //        log.info(">>>>>>THIS IS INDEX")
 //        log.warn(">>>>>>>.THIS IS WARN")
 //        log.debug(">>>>>>>.THIS IS TRACE")
         log.error(">>>>>>THIS IS error")
         log.info(params.toQueryString())
-        render "THIS IS INFO CONTROLLER"
+//        render "THIS IS INFO CONTROLLER"
+        render view: 'error/pageNotFound'
+    }
+
+    def error(){
+        render view: 'error/error'
+    }
+    def test(User user){
+        render user
     }
 
     def level() {

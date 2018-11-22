@@ -9,6 +9,9 @@ class Topic {
     User createdBy
     Date dateCreated
     Date lastUpdated
+    static Visibility convertVisibility(String visibility) {
+        Visibility.valueOf(visibility)
+    }
 
     static hasMany = [subscriptions: Subscription, resources: Resource]
     static mapping = {

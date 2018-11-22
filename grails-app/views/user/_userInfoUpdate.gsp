@@ -11,12 +11,12 @@
             <g:uploadForm controller="user" action="updateUser" enctype="multipart/form-data">
                 <div class="form-group col-lg-10">
                     <label>First Name*</label>
-                    <input class="form-control" type="text" placeholder="Enter your firstName" name="updatedFirstName" required>
+                    <input class="form-control" type="text" placeholder="Enter your firstName" pattern="[A-Za-z]" name="updatedFirstName" required>
                 </div>
 
                 <div class="form-group col-lg-10">
                     <label>Last Name*</label>
-                    <input class="form-control" type="text" placeholder="Enter your lastName" name="updateLastName" required>
+                    <input class="form-control" type="text" placeholder="Enter your lastName" pattern="[A-Za-z]" name="updateLastName" required>
                 </div>
 
                 <div class="form-group col-lg-10">

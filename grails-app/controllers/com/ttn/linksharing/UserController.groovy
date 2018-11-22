@@ -1,13 +1,18 @@
 package com.ttn.linksharing
 
-
+import com.ttn.linksharing.DTO.EmailDTO
+import com.ttn.linksharing.vo.SubscriptionsVO
 import com.ttn.linksharing.vo.TopicVO
 import com.ttn.linksharing.vo.UserVO
+import grails.converters.JSON
+import org.apache.commons.lang.RandomStringUtils
+import org.hibernate.validator.constraints.Email
 
 class UserController {
 
     def assetResourceLocator
-
+    def emailService
+    UserService userService
     def index() {
         if (session.user) {
             log.info("--USER INDEX , SESSION USER , --")
@@ -30,7 +35,8 @@ class UserController {
         List<TopicVO> userTopics = []
         topics.each {
             userTopics.add(new TopicVO(id: it.id, name: it.name, visibility: it.visibility,
-                    createdBy: it.createdBy.firstName, subscriptionCount: it.subscriptions.size(), postCount: it.resources.size()))
+                    createdBy: it.createdBy.firstName, subscriptionCount: it.subscriptions.size(),
+                    postCount: it.resources.size()))
         }
         render(view: 'editProfile', model: [userTopics: userTopics])
     }
@@ -118,22 +124,37 @@ class UserController {
             if (user.active) {
                 user.active = false
                 if (user.save(flush: true)) {
-                    flash.message= "User DeActivated"
+                    flash.message = "User DeActivated"
                     log.info("user is activated")
                     render(view: 'userListAdmin')
                 }
             } else {
                 user.active = true
                 if (user.save(flush: true))
-                    flash.message= "User activated"
+                    flash.message = "User activated"
                 log.info("user is deactivated")
-                    render(view: 'userListAdmin')
+                    render(view: 'userListAdmin' )
             }
 
         } else {
             log.info("user not FOund")
-            flash.message= "User not found"
+            flash.error = "User not found"
             render(view: 'userListAdmin')
         }
     }
+
+//    def forgetPassword(String recoveryEmail) {
+//        if (userService.forgetPassword(recoveryEmail)) {
+//            redirect(controller: "login", action: "index")
+//        }
+//    }
+    def isEmailExist(String recoveryEmail){
+        int mail=0
+        mail=User.countByEmail(recoveryEmail)
+        if(mail==1)
+            render true
+        else
+            render false
+    }
+
 }

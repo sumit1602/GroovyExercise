@@ -12,7 +12,7 @@
             <g:form controller="user" action="changePassword">
                 <div class="form-group col-lg-10">
                     <label>Password*</label>
-                    <input class="form-control" type="text" placeholder="Enter new password" name="updatedPassword" required>
+                    <input class="form-control" type="password" placeholder="Enter new password" name="updatedPassword" required>
                 </div>
 
                 <div class="form-group col-lg-10">

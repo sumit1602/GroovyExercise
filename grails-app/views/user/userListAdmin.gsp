@@ -21,14 +21,13 @@
                 <th>EMAIL</th>
                 <th>IS_ACTIVE</th>
                 <th>CHANGE_ACTIVE_STATUS</th>
-                %{--<th>TOPIC_COUNT</th>--}%
                 <th>RESOURCE_COUNT</th>
                 <th>SUBSCRIPTION_COUNT</th>
             </tr>
             </thead>
+        <g:each in="${allUsers}" var="user">
 
             <tbody>
-            <g:each in="${allUsers}" var="user">
                 <tr>
                     <td>${user.fullName}</td>
                     <td>${user.email}</td>
@@ -44,14 +43,14 @@
                     </a>
                     </td>
 
-                    %{--<td>user.topicCount</td>--}%
                     <td>${user.resourceCount}</td>
                     <td>${user.subscriptionCount}</td>
                 </tr>
-            </g:each>
             </tbody>
+        </g:each>
 
         </table>
+
     </div>
 </div>
 
