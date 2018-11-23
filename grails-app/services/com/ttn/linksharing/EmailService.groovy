@@ -16,7 +16,7 @@ class EmailService {
         mailService.sendMail{
             from "sumitchaudhary39@gmail.com"
             to emailDTO.to.toArray()
-            println emailDTO.to.toArray()
+//            println emailDTO.to.toArray()
             subject emailDTO.subject
             if(emailDTO.content){
                 body emailDTO.content

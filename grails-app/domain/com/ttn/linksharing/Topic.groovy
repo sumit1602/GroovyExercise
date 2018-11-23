@@ -9,6 +9,7 @@ class Topic {
     User createdBy
     Date dateCreated
     Date lastUpdated
+
     static Visibility convertVisibility(String visibility) {
         Visibility.valueOf(visibility)
     }
@@ -78,6 +79,7 @@ class Topic {
             log.info("Cannot be viewed")
             return false
         }
+//        return(isPublic(this) || Subscription.findByUserAndTopic(user,this) || user.isAdmin())
     }
 
     def getScore(){

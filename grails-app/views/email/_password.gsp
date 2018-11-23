@@ -1,8 +1,6 @@
 <%@ page contentType="text/html"%>
-<body>
 <div>
     <h1>Hello ${userName} ,Please login using the new password</h1>
-    <h3>${newPassword}</h3>
-    <g:link url="${serverUrl}/login/index">Login</g:link>
+    <h4>${newPassword}</h4>
+    <a href="http://localhost:8080/sumit/login/index">Login</a>
 </div>
-</body>

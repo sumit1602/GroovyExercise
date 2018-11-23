@@ -114,7 +114,7 @@
 
 %{--<g:if test="${session.user == null}">--}%
     <g:if test="${flash.error}">
-        <g:message message="${flash.error}"></g:message>
+        <div style="padding: 2px;"><center><g:message message="${flash.error}"></g:message></center></div>
     </g:if>
     <g:if test="${flash.message}">
         <g:message message="${flash.message}"></g:message>

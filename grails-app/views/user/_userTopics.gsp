@@ -165,12 +165,14 @@
     <script>
         function topicDelete(id) {
             var info = confirm("Are you Sure.....!!! think again ?");
-            if (info == true) {
+            if (info) {
                 $.ajax({
                     url: "http://localhost:8080/Linksharing/topic/delete",
                     type: "POST",
+                    contentType: "application/json; charset=utf-8",
                     data: {id: id},
                     success: function (data) {
+                        console.log(data)
                         alert(data)
                     },
                     error: function (data) {

@@ -25,6 +25,7 @@ class LoginService {
                     ,model: [userName: user.fullName, newPassword: newPassword, serverUrl: grailsApplication.config.grails.serverURL])
             emailService.sendMail(emailDTO)
             user.password = newPassword
+            user.confirmPassword = newPassword
             if(user.save(flush: true)){
                 ([message: "Success"]) as JSON
                 return true

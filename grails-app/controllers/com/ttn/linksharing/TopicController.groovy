@@ -37,11 +37,13 @@ TopicService topicService;
     def delete() {
         Topic topic = Topic.get(params.id)
         if (topic) {
-            topic.delete(flush: true)
+
+            if (topic.delete(flush: true)) {
 //            render "Topic is deleted"
-            flash.message = "Topic is deleted"
-            log.info "---------${topic} is deleted--------"
-            redirect(controller: 'user', action: 'index')
+//                flash.message = "Topic is deleted"
+                log.info "---------${topic} is deleted--------"
+                redirect(controller: 'user', action: 'index')
+            }
         } else {
 //            render "Topic not found of given id"
             flash.error = "Topic not found of given id"

@@ -7,8 +7,8 @@
         </div>
 
         <div class="panel-body ">
-            <g:uploadForm controller="login" action="register" method="post" enctype="multipart/form-data">
-                <div class="form-group col-lg-10">
+            <g:uploadForm controller="login" action="register" method="post" enctype="multipart/form-data" autocomplete="on">
+                <div class="form-group col-lg-10" >
                     <label>First Name*</label>
                     <input class="form-control" type="text" name="firstName"
                            placeholder="Enter Your First name" required>
